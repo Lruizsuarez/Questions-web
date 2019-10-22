@@ -12,6 +12,15 @@ export const environment = {
     storageBucket: '',
     messagingSenderId: '411133758726',
     appId: '1:411133758726:web:0385fec422abd4dc'
+  }, microsoftConfig: {
+    tenant: '299a2881-1380-4020-b42f-715a35e1bcaf',
+    client_id: '91882a10-c473-4a6a-a89c-404cf7b6b316',
+    userPermissions: [
+      'User.Read',
+      'email',
+      'openid',
+      'profile'
+    ]
   }
 };
 
