@@ -1,4 +1,15 @@
-
-<div>
-<a>hello</a>
+<div class="login-bgr">
+  <div fxLayout="row" fxLayoutAlign="space-between" gdAlignRows="center">
+    <div class="img-margin">
+      <img src="../../assets/questions-logo-clean.png" alt="questions-logo">
+    </div>
+    <div>
+      <button class="login-btn" mat-raised-button color="primary" (click)="doLogin()">
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <fa-icon fxFlex= "15%" [icon]="msIcon"></fa-icon>
+          <label fxFlex="90%">GET STARTED</label>
+        </div>
+      </button>
+    </div>
+  </div>
 </div>
