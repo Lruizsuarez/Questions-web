@@ -1,6 +1,7 @@
+import { Question } from './../../models/models';
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { map, first, take } from 'rxjs/operators';
+import { map,  take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 

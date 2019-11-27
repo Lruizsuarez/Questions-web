@@ -1,7 +1,6 @@
 import { AuthService } from './../services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
 import { faWindows } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -12,14 +11,20 @@ import { faWindows } from '@fortawesome/free-brands-svg-icons';
 export class LoginComponent implements OnInit {
 
   msIcon = faWindows;
+  isLoading = false;
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, private auth: AuthService, public ngZone: NgZone) { }
 
   ngOnInit() {
   }
 
   doLogin() {
-    this.auth.doMicrosoftAuth();
+    this.isLoading = true;
+    this.auth.doMicrosoftAuth().then(() => {
+      this.router.navigate(['home']);
+    }).catch((err) => {
+      alert(JSON.stringify(err));
+    });
   }
 
 }

@@ -1,13 +1,4 @@
 
-.login-bgr{
-  background :radial-gradient(
-    circle,
-    rgba(241, 245, 243, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
-
-  height: 100%;
-}
 
 .img-margin{
   margin: 25% 0;
@@ -18,5 +9,13 @@ width: 100%;
 margin: 5% 0;
 padding: 0 5%;
 background:#004578;
+}
+
+#login-spinner{
+  position: absolute;
+}
+
+.principal{
+  height: 100%;
 }
 

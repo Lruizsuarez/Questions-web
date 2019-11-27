@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <app-side-menu [user]="user" fxFlex="25"></app-side-menu>
+  <div fxLayout="column" fxFlex="50">
+    <div *ngFor="let topic of topics | async">
+      <mat-card class="topic-card">
+        <div><img mat-card-image class="topic-image" [src]="topic.image" /></div>
+        <div class="title">
+          <h2>
+            {{topic.name}}
+          </h2>
+        </div>
+        <mat-card-content>
+          {{topic.description}}
+        </mat-card-content>
+        <mat-card-footer>
+            <button mat-button  class="full-btn">See courses</button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,7 @@
-<div class="login-bgr">
+<div fxLayout="row" fxLayoutAlign="center center" class="principal">
+    <div *ngIf="isLoading" id="login-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
   <div fxLayout="row" fxLayoutAlign="space-between" gdAlignRows="center">
     <div class="img-margin">
       <img src="../../assets/questions-logo-clean.png" alt="questions-logo">

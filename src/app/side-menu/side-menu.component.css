@@ -1,0 +1,70 @@
+.centered {
+  height: max-content;
+  background: white;
+  border-radius: 12px;
+  margin: 2% 2%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.header-image {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+#avatar-img {
+  margin: 2% auto;
+}
+
+.simple-text {
+  text-align: center;
+  margin: 2% auto;
+}
+
+.menu-button {
+  width: 80%;
+  border-radius: 12px;
+  margin: 2% auto;
+  /* background-color:  #2fc1e6; */
+}
+
+.sample-icon {
+  font-size: 30px;
+}
+
+.button-content {
+  margin: 2% auto;
+  font-size: 20px;
+  color: #2fc1e6;
+}
+
+.menu-label {
+  margin-top: 2%;
+}
+
+/*
+#profile-btn{
+  background-color: rgb(129, 60, 219);
+}
+
+#courses-btn{
+  background-color: #2fc1e6;
+}
+
+#stadistics-btn{
+  background-color: rgb(19, 138, 35);
+}
+
+
+#logout-btn {
+   background-color: rgb(206, 11, 11);
+}
+*/
+
+
+.logout-content {
+  color: red;
+}

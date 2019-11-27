@@ -1,0 +1,40 @@
+
+#logo-img{
+  max-width: 200px;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.text{
+  margin : 2% auto;
+  text-align: center;
+}
+
+#idFooter{
+  margin :0 3%;
+}
+
+#submit-btn{
+  background:rgb(15, 131, 63);
+  color: whitesmoke;
+}
+
+
+.m-content{
+  height: max-content;
+}
+
+.centered{
+  height: 100%;
+}
+
+
+.spinner {
+  position: fixed;
+  z-index: 1031;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
