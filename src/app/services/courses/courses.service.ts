@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { Topic } from 'src/app/models/models';
 
 
 @Injectable({
@@ -9,10 +6,7 @@ import { Topic } from 'src/app/models/models';
 })
 export class CoursesService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor() { }
 
 
-  public getCourseTopics(): Observable<Topic[]> {
-     return this.db.collection<Topic>('topics').valueChanges();
-  }
 }

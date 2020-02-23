@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Topic } from '../models/models';
 import { CoursesService } from '../services/courses/courses.service';
-import { User } from 'firebase';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -10,12 +7,10 @@ import { User } from 'firebase';
 })
 export class CoursesComponent implements OnInit {
 
-  @Input() user: User;
+  @Input() user: any;
 
-  public topics: Observable<Topic[]>;
 
   constructor(private service: CoursesService) {
-    this.topics = service.getCourseTopics();
   }
 
   ngOnInit() {

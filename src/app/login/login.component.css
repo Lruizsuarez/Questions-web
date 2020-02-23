@@ -1,21 +1,58 @@
-
-
-.img-margin{
+.img-margin {
   margin: 25% 0;
 }
 
-.login-btn{
-width: 100%;
-margin: 5% 0;
-padding: 0 5%;
-background:#004578;
+.login-btn {
+  width: 100%;
+  margin: 5% 0;
+  padding: 0 5%;
+  background: #004578;
 }
 
-#login-spinner{
+#login-spinner {
   position: absolute;
 }
 
-.principal{
-  height: 100%;
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
 }
 
+
+.input-value {
+  width: 80%;
+  display: inherit;
+  margin: 2% auto;
+}
+
+.submit-btn {
+  background: rgb(28, 120, 196);
+  color: whitesmoke;
+  width: 50%;
+}
+
+form{
+  width: 50%;
+}
+
+.principal {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(28, 120, 196) ;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(28, 120, 196);
+}
+
+:host {
+  width: 50%;
+}

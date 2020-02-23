@@ -1,7 +1,8 @@
+import { AuthUserResponse, AuthRequest } from './../models/auth.models';
 import { AuthService } from './../services/auth/auth.service';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faWindows } from '@fortawesome/free-brands-svg-icons';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +11,27 @@ import { faWindows } from '@fortawesome/free-brands-svg-icons';
 })
 export class LoginComponent implements OnInit {
 
-  msIcon = faWindows;
   isLoading = false;
+  LoginForm: FormGroup;
 
-  constructor(private router: Router, private auth: AuthService, public ngZone: NgZone) { }
+  constructor(private router: Router, private auth: AuthService, private builder: FormBuilder) { }
 
   ngOnInit() {
+    this.LoginForm = this.builder.group({
+      email: ['', [Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(konradlorenz)\.edu\.co$')]],
+      password: ['', Validators.required]
+    });
   }
 
   doLogin() {
     this.isLoading = true;
-    this.auth.doMicrosoftAuth().then(() => {
-      this.router.navigate(['home']);
+    const request = this.LoginForm.value as AuthRequest;
+    this.auth.callLoginService(request).then((userResponse: AuthUserResponse) => {
+      // TODO: pass data betwwen services
+      this.isLoading = false;
     }).catch((err) => {
-      alert(JSON.stringify(err));
+      console.log(err);
     });
   }
 

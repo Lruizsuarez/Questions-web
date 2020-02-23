@@ -21,32 +21,10 @@ export class HomeComponent implements OnInit {
   public topics: Observable<Topic[]>;
 
   constructor(private router: Router, private auth: AuthService, private service: CoursesService) {
-    this.auth.getAuthState().subscribe((user) => {
-      this.user = user;
-      this.auth.validateUserType(user.email).then(value => {
-        this.type = value;
-        this.isLoading = false;
-      }).catch((err) => {
-        this.type = err;
-        this.isLoading = false;
-      });
-    });
-
-    this.topics = service.getCourseTopics();
   }
 
 
   ngOnInit() {
-  }
-
-
-  public finalizeRegister() {
-    this.isLoading = true;
-    this.auth.updateCommons(this.name, this.code, this.user.uid).then(() => {
-      this.isLoading = false;
-    }).catch((err) => {
-      console.error('error', err);
-    });
   }
 
 }
