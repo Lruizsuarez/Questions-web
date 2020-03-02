@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './helpers/AuthInterceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,13 +13,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { CoursesComponent } from './courses/courses.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
+import { TopicsComponent } from './topic/topic.component';
+import { SideMenuComponent } from './home/side-menu/side-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -26,7 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    CoursesComponent,
+    TopicsComponent,
     SideMenuComponent
   ],
   imports: [
@@ -43,9 +45,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     MatIconModule,
     HttpClientModule,
-    StorageServiceModule
+    StorageServiceModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

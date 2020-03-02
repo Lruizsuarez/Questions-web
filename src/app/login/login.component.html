@@ -16,13 +16,16 @@
       <form [formGroup]="LoginForm" (ngSubmit)="doLogin()" #form="ngForm">
         <mat-form-field class="input-value">
           <input matInput placeholder="email" formControlName="email">
+          <mat-error *ngIf="(f.email.dirty || f.email.touched) && f.email.errors?.pattern"> please enter a valid Konrad Lorenz email.</mat-error>
+          <mat-error *ngIf="(f.email.dirty || f.email.touched) && f.email.errors?.required"> This value is required. </mat-error>
         </mat-form-field>
-
         <mat-form-field class="input-value">
           <input matInput placeholder="password" type="password" formControlName="password">
+          <mat-error *ngIf="(f.password.dirty || f.password.touched) && f.password.errors?.required"> This value is required. </mat-error>
+          <mat-error *ngIf="(f.password.dirty || f.password.touched) && f.password.errors?.minlength"> The minimun length is 6. </mat-error>
         </mat-form-field>
         <div class="button-container">
-          <button class="submit-btn" mat-button color="primary">Log-in</button>
+          <button [disabled]="LoginForm.invalid" class="submit-btn" mat-button color="primary">Log-in</button>
         </div>
       </form>
     </div>

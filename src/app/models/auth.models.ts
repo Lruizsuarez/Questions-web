@@ -9,8 +9,6 @@ export interface AuthResponse {
 }
 
 export interface AuthUserResponse {
-  user_name: string;
-  email: string;
   permissions: AuthAccess;
   last_login_date: Date;
 }

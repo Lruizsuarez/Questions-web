@@ -17,8 +17,12 @@ export class LocalStorageService {
   }
 
 
-  public get(key: string): boolean {
+  public get(key: string): any {
     return this.storage.get(key);
+  }
+
+  public getAsJson(key: string): any {
+    return JSON.parse(this.storage.get(key));
   }
 
   public remove(key: string): void {

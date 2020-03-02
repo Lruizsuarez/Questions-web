@@ -1,6 +1,4 @@
 <div class="m-content" fxLayout="row" fxLayoutAlign="center center">
-    <app-courses [user]="user" *ngIf="(user.authenticated || type === 'TEACHER')&& !isLoading" fxFlex="100"></app-courses>
-  </div>
-  <div *ngIf="isLoading" class="spinner">
-    <mat-spinner></mat-spinner>
-  </div>
+  <app-side-menu [user]="user" fxFlex="25"></app-side-menu>
+  <app-courses fxFlex="50"></app-courses>
+</div>

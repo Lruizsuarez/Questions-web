@@ -1,7 +1,6 @@
 .centered {
   height: max-content;
   background: white;
-  border-radius: 12px;
   margin: 2% 2%;
   position: -webkit-sticky;
   position: sticky;
@@ -26,7 +25,6 @@
 
 .menu-button {
   width: 80%;
-  border-radius: 12px;
   margin: 2% auto;
   /* background-color:  #2fc1e6; */
 }
@@ -38,7 +36,7 @@
 .button-content {
   margin: 2% auto;
   font-size: 20px;
-  color: #2fc1e6;
+  color: rgba(28, 120, 196, 1);
 }
 
 .menu-label {

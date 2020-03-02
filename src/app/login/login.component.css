@@ -33,7 +33,7 @@
   width: 50%;
 }
 
-form{
+form {
   width: 50%;
 }
 
@@ -45,14 +45,35 @@ form{
   align-items: center;
 }
 
+
+.submit-btn:disabled {
+  background: rgb(169, 172, 173);
+  color: whitesmoke;
+}
+
 :host ::ng-deep .mat-focused .mat-form-field-ripple {
-  background-color: rgb(28, 120, 196) ;
+  background-color: rgb(28, 120, 196);
 }
 
 :host ::ng-deep .mat-focused .mat-form-field-label {
   color: rgb(28, 120, 196);
 }
 
-:host {
-  width: 50%;
+:host ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #f44336;
+}
+
+:host ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: #f44336;
+}
+
+
+::ng-deep .mat-snack-bar-container {
+  background: rgb(250, 251, 252);
+  color: rgb(226, 93, 93);
+}
+
+
+::ng-deep .mat-simple-snackbar-action {
+  color: rgb(226, 93, 93);
 }

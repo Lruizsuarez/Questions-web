@@ -3,29 +3,29 @@
     <img src="https://www.w3schools.com/howto/img_avatar.png" class="header-image">
   </div>
   <div>
-    <h2 class="simple-text">{{user.name}}</h2>
-    <h5 class="simple-text">{{user.email}}</h5>
-    <h6 class="simple-text">{{user.code}}</h6>
+    <h2 class="simple-text">{{(user| async)?.user_name}}</h2>
+    <h5 class="simple-text">{{(user | async)?.email}}</h5>
+    <h6 class="simple-text">{{(user | async)?.code}}</h6>
   </div>
-  <button id="profile-btn" class="menu-button" mat-button >
+  <button id="profile-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon fxFlex="10" class="sample-icon">assignment_ind</mat-icon>
       <label class="menu-label" fxFlex="60">Profile</label>
     </div>
   </button>
-  <button id="courses-btn" class="menu-button" mat-button >
+  <button id="courses-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon fxFlex="10" class="sample-icon">book</mat-icon>
       <label class="menu-label" fxFlex="60">Courses</label>
     </div>
   </button>
-  <button id="stadistics-btn" class="menu-button" mat-button >
+  <button id="stadistics-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon fxFlex="10" class="sample-icon">assessment</mat-icon>
       <label class="menu-label" fxFlex="60">Stadistics</label>
     </div>
   </button>
-  <button id="logout-btn" class="menu-button" mat-button >
+  <button id="logout-btn" class="menu-button" mat-button>
     <div class="button-content logout-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon fxFlex="10" class="sample-icon">power_settings_new</mat-icon>
       <label class="menu-label" fxFlex="60">Log-out</label>

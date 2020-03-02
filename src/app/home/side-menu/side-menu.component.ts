@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
+import { User } from './../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../models/models';
 
 @Component({
   selector: 'app-side-menu',
@@ -8,11 +9,11 @@ import { User } from '../models/models';
 })
 export class SideMenuComponent implements OnInit {
 
-  @Input() user: User;
+  @Input() user: Observable<User>;
+
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
