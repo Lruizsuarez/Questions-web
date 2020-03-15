@@ -39,7 +39,7 @@ export class AuthService {
       .then(() => {
         this.storage.clear();
       }).catch((err) => {
-        if (err.error.stats) {
+        if (err.error.status) {
           throw err.error as ErrorResponse;
         } else {
           throw { code: 500, status: UNHANDLED_ERROR_TEXT } as ErrorResponse;

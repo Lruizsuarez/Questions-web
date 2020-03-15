@@ -1,5 +1,5 @@
 import { Data } from './../../models/common.model';
-import { User, Course } from './../../models/user.model';
+import { User, Course, Activity } from './../../models/user.model';
 import { BEARER_KEY, BEARER_AUTH } from './../../utils/constants';
 import { LocalStorageService } from './../storage/local.storage.service';
 import { Observable } from 'rxjs';
@@ -38,6 +38,10 @@ export class UserService {
 
   getEnrolledCourses(): Observable<Course[]> {
     return this.http.get<Data<Course[]>>(`${this._url}/api/user/v1/enrolled`).pipe(map(courses => courses.data));
+  }
+
+  getActivity(): Observable<Activity[]> {
+    return this.http.get<Data<Activity[]>>(`${this._url}/api/user/v1/activity`).pipe(map(activities =>  activities.data));
   }
 
 

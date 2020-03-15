@@ -27,3 +27,10 @@ export interface Course {
   create_date: Date;
   last_update_date: Date;
 }
+
+export interface Activity {
+  activity: string;
+  description: string;
+  icon: string;
+  activity_date: Date;
+}
