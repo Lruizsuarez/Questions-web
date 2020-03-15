@@ -13,7 +13,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { TopicsComponent } from './topic/topic.component';
 import { SideMenuComponent } from './home/side-menu/side-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,6 +20,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CoursesComponent } from './home/user-detail/courses/courses.component';
+import { UserDetailComponent } from './home/user-detail/user-detail.component';
+import { ActivityComponent } from './home/user-detail/activity/activity.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,8 +32,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    TopicsComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    CoursesComponent,
+    UserDetailComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     HttpClientModule,
     StorageServiceModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

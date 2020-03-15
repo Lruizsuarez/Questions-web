@@ -1,0 +1,7 @@
+.principal-container {
+  height: 100%;
+}
+
+.unbordered-card{
+  border-radius: 0;
+}

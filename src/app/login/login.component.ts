@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     const request = this.LoginForm.value as AuthRequest;
     this.auth.callLoginService(request).then(() => {
-      this.router.navigate(['/home']);
       this.isLoading = false;
+      this.router.navigate(['home']);
     }).catch((err: ErrorResponse) => {
       this.isLoading = false;
       this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000 });

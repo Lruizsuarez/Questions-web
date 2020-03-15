@@ -1,7 +1,6 @@
 .centered {
   height: max-content;
   background: white;
-  margin: 2% 2%;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -26,7 +25,6 @@
 .menu-button {
   width: 80%;
   margin: 2% auto;
-  /* background-color:  #2fc1e6; */
 }
 
 .sample-icon {
@@ -35,7 +33,7 @@
 
 .button-content {
   margin: 2% auto;
-  font-size: 20px;
+  font-size: 12pt;
   color: rgba(28, 120, 196, 1);
 }
 
@@ -45,5 +43,15 @@
 
 
 .logout-content {
-  color: red;
+  color: rgb(228, 94, 85);
+}
+
+::ng-deep .mat-snack-bar-container {
+  background: rgb(250, 251, 252);
+  color: rgb(226, 93, 93);
+}
+
+
+::ng-deep .mat-simple-snackbar-action {
+  color: rgb(226, 93, 93);
 }

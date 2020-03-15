@@ -1,0 +1,14 @@
+#courses {
+  height: 60%;
+  width: 100%;
+  padding-bottom: 1%;
+}
+
+#activity {
+  height: 40%;
+  width: 100%;
+}
+
+.principal-content {
+  height: 100%;
+}

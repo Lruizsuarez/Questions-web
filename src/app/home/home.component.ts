@@ -1,6 +1,6 @@
+import { UserService } from './../services/user/user.service';
 import { Observable } from 'rxjs';
 import { User } from './../models/user.model';
-import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
   public isLoading = true;
   public user: Observable<User>;
 
-  constructor(private auth: AuthService) {
+  constructor(private userInfo: UserService) {
   }
 
 
   ngOnInit() {
-    this.user = this.auth.currentUser;
+    this.user = this.userInfo.currentUser;
   }
 
 }

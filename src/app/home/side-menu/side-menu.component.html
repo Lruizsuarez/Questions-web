@@ -25,7 +25,7 @@
       <label class="menu-label" fxFlex="60">Stadistics</label>
     </div>
   </button>
-  <button id="logout-btn" class="menu-button" mat-button>
+  <button id="logout-btn" class="menu-button" mat-button (click)="doLogout()">
     <div class="button-content logout-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon fxFlex="10" class="sample-icon">power_settings_new</mat-icon>
       <label class="menu-label" fxFlex="60">Log-out</label>

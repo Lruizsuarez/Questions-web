@@ -1,7 +1,3 @@
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Data } from './../../models/common.model';
-import { User } from './../../models/user.model';
 import { ErrorResponse } from './../../models/error.model';
 import { LocalStorageService } from './../storage/local.storage.service';
 import { AuthRequest, AuthResponse } from './../../models/auth.models';
@@ -16,24 +12,19 @@ import { BEARER_AUTH, BEARER_KEY, UNHANDLED_ERROR_TEXT } from '../../utils/const
 export class AuthService {
 
   private _url: string;
-  private _currentUser: Observable<User>;
 
   constructor(private http: HttpClient, private storage: LocalStorageService) {
     this._url = environment.BASEURL;
-    if (storage.hasKey(BEARER_KEY)) {
-      this._currentUser = this.callUserInformation();
-    }
   }
 
 
-  public callLoginService(authRequest: AuthRequest): Promise<void> {
-    const requestHeaders = { 'content-type': 'application/json' };
+  callLoginService(authRequest: AuthRequest): Promise<void> {
+    const requestHeaders = { 'content-type': 'application/json', 'login-flow': 'true' };
 
     return this.http.post<AuthResponse>(`${this._url}/authentication/v1/login`, authRequest, { headers: requestHeaders })
       .toPromise().then((authResponse: AuthResponse) => {
         this.storage.store(BEARER_KEY, authResponse.bearer);
         this.storage.store(BEARER_AUTH, JSON.stringify(authResponse.data));
-        this._currentUser = this.callUserInformation();
       }).catch((err) => {
         if (err.error.status) {
           throw err.error as ErrorResponse;
@@ -43,12 +34,18 @@ export class AuthService {
       });
   }
 
-  public callUserInformation(): Observable<User> {
-    return this.http.get<Data<User>>(`${this._url}/api/user/v1/find`).pipe(map(user => user.data));
+  callLogoutService(): Promise<void> {
+    return this.http.delete(`${this._url}/authentication/v1/logout`).toPromise()
+      .then(() => {
+        this.storage.clear();
+      }).catch((err) => {
+        if (err.error.stats) {
+          throw err.error as ErrorResponse;
+        } else {
+          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as ErrorResponse;
+        }
+      });
   }
 
-  get currentUser(): Observable<User> {
-    return this._currentUser;
-  }
 
 }

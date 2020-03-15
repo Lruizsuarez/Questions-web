@@ -1,6 +1,6 @@
-import { BEARER_KEY } from './../utils/constants';
+import { BEARER_KEY, UNHANDLED_ERROR_TEXT } from './../utils/constants';
 import { LocalStorageService } from './../services/storage/local.storage.service';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -9,16 +9,28 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private storage: LocalStorageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.headers.get('login-flow')) {
+      return next.handle(request);
+    }
+
     const token = this.storage.get(BEARER_KEY);
     if (token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
-          accept : 'application/json'
+          accept: 'application/json'
         }
       });
-    }
 
-    return next.handle(request);
+      return next.handle(request);
+    } else {
+      throw new HttpErrorResponse({
+        error: { code: 412, status: UNHANDLED_ERROR_TEXT },
+        headers: null,
+        status: 412,
+        statusText: 'Token-not-found',
+        url: request.url
+      });
+    }
   }
 }
