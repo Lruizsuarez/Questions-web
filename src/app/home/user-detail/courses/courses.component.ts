@@ -1,10 +1,10 @@
-import { TEACHER_USER_BUTTON, STUDENT_USER_BUTTON, TEACHER_USER_BUTTON_DESC, STUDENT_USER_BUTTON_DESC } from './../../../utils/constants';
+import { Router } from '@angular/router';
 import { ErrorResponse } from './../../../models/error.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Course } from './../../../models/user.model';
 import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses',
@@ -14,11 +14,16 @@ import { catchError } from 'rxjs/operators';
 export class CoursesComponent implements OnInit {
 
   courses: Observable<Course[] | any>;
+  filteredCourses: Observable<Course[]>;
   error: ErrorResponse = null;
-  private isTeacher: boolean;
-  GENERIC_ERROR_EMPTY_STATE = './../../../../../assets/errors/iconfinder_error_512541.png';
+  isSearching = false;
+  searchValue = '';
+  filterError: string;
+  isTeacher: boolean;
+  GENERIC_ERROR_EMPTY_STATE = './../../../../../assets/errors/mirage-come-back-later.png';
+  EMPTY_QUERY_EMPTY_STATE = './../../../../../assets/errors/flamenco-searching.png';
 
-  constructor(private userInfo: UserService) {
+  constructor(private userInfo: UserService, private router: Router) {
     this.isTeacher = false;
   }
 
@@ -28,43 +33,43 @@ export class CoursesComponent implements OnInit {
       this.courses = this.userInfo.getCreatedCourses()
         .pipe(
           catchError((err: any) => {
-            this.error = err.error as ErrorResponse;
-            return of();
+            return this.handleError(err);
           }));
     } else {
       this.courses = this.userInfo.getEnrolledCourses()
         .pipe(
           catchError((err: any) => {
-            this.error = err.error as ErrorResponse;
-            return of();
+            return this.handleError(err);
           }));
     }
-
   }
 
-
-  getFormattedDate(date: string): string {
-    return date.replace(/\..*$/g, '').replace('T', '-');
-  }
-
-  getButtonUrl(): string {
-    if (this.isTeacher) {
-      return TEACHER_USER_BUTTON;
+  handleError(err: any): Observable<any> {
+    this.error = err.error as ErrorResponse;
+    if (this.error.code === 412) {
+      this.router.navigate(['login']);
     }
-    return STUDENT_USER_BUTTON;
+    return of();
   }
 
-  getButtonDescription(): string {
-    if (this.isTeacher) {
-      return TEACHER_USER_BUTTON_DESC;
-    }
-    return STUDENT_USER_BUTTON_DESC;
-  }
+  search() {
+    this.isSearching = true;
+    if (this.searchValue.length > 0) {
+      this.filteredCourses =
+        this.courses.pipe(
+          map((courses: Course[]) => {
+            const filteredData = courses.filter((course: Course) => course.title.toLowerCase().includes(this.searchValue.toLowerCase()));
 
-  getRole(): string {
-    if (this.isTeacher) {
-      return 'Teacher';
+            if (filteredData.length === 0) {
+              this.filterError = `not found results for "${this.searchValue}"`;
+              throwError(this.filterError);
+              return;
+            }
+            this.filterError = null;
+            return filteredData;
+          }));
+    } else {
+      this.isSearching = false;
     }
-    return 'Student';
   }
 }

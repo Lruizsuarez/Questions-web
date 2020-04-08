@@ -18,13 +18,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageServiceModule } from 'ngx-webstorage-service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoursesComponent } from './home/user-detail/courses/courses.component';
 import { UserDetailComponent } from './home/user-detail/user-detail.component';
 import { ActivityComponent } from './home/user-detail/activity/activity.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CourseEnrollmentComponent } from './courses/course-enrollment/course-enrollment.component';
+import { TopicsComponent } from './topics/topics.component';
+import { CourseListComponent } from './home/user-detail/courses/course-list/course-list.component';
 
 
 @NgModule({
@@ -35,11 +38,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     SideMenuComponent,
     CoursesComponent,
     UserDetailComponent,
-    ActivityComponent
+    ActivityComponent,
+    CourseEnrollmentComponent,
+    TopicsComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
