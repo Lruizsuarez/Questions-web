@@ -1,12 +1,12 @@
 import { BEARER_KEY, UNHANDLED_ERROR_TEXT } from './../utils/constants';
-import { LocalStorageService } from './../services/storage/local.storage.service';
+import { SessionStorageService } from '../services/storage/session.storage.service';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private storage: LocalStorageService) { }
+  constructor(private storage: SessionStorageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.headers.get('login-flow')) {

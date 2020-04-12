@@ -67,13 +67,6 @@ form {
   background-color: #f44336;
 }
 
-
-::ng-deep .mat-snack-bar-container {
-  background: rgb(250, 251, 252);
-  color: rgb(226, 93, 93);
-}
-
-
-::ng-deep .mat-simple-snackbar-action {
+::ng-deep .error-snackbar .mat-simple-snackbar-action {
   color: rgb(226, 93, 93);
 }

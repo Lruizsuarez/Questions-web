@@ -1,3 +1,5 @@
+import { CourseCreationComponent } from './topics/course-creation/course-creation.component';
+import { STORAGE_SERVICE, SessionStorageService } from './services/storage/session.storage.service';
 import { AuthInterceptor } from './helpers/AuthInterceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,7 +19,7 @@ import { SideMenuComponent } from './home/side-menu/side-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { StorageServiceModule } from 'ngx-webstorage-service';
+import { SESSION_STORAGE } from 'ngx-webstorage-service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoursesComponent } from './home/user-detail/courses/courses.component';
@@ -26,8 +28,8 @@ import { ActivityComponent } from './home/user-detail/activity/activity.componen
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CourseEnrollmentComponent } from './courses/course-enrollment/course-enrollment.component';
-import { TopicsComponent } from './topics/topics.component';
 import { CourseListComponent } from './home/user-detail/courses/course-list/course-list.component';
+import { CourseFormComponent } from './topics/course-creation/course-form/course-form.component';
 
 
 @NgModule({
@@ -40,13 +42,13 @@ import { CourseListComponent } from './home/user-detail/courses/course-list/cour
     UserDetailComponent,
     ActivityComponent,
     CourseEnrollmentComponent,
-    TopicsComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseCreationComponent,
+    CourseFormComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -58,13 +60,14 @@ import { CourseListComponent } from './home/user-detail/courses/course-list/cour
     MatDividerModule,
     MatIconModule,
     HttpClientModule,
-    StorageServiceModule,
     MatSnackBarModule,
     MatTooltipModule,
     MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: STORAGE_SERVICE, useExisting: SESSION_STORAGE },
+    SessionStorageService
   ],
   bootstrap: [AppComponent]
 })

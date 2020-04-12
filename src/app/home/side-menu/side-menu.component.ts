@@ -24,7 +24,7 @@ export class SideMenuComponent implements OnInit {
     this.auth.callLogoutService().then(() => {
       this.router.navigate(['login']);
     }).catch((err) => {
-      this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000 });
+      this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000, panelClass: ['error-snackbar'] });
     });
   }
 }

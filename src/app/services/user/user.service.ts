@@ -1,7 +1,7 @@
 import { Data } from './../../models/common.model';
 import { User, Course, Activity } from './../../models/user.model';
 import { BEARER_KEY, BEARER_AUTH } from './../../utils/constants';
-import { LocalStorageService } from './../storage/local.storage.service';
+import { SessionStorageService } from '../storage/session.storage.service';
 import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +16,7 @@ export class UserService {
   private _url: string;
   private _currentUser: Observable<User>;
 
-  constructor(private http: HttpClient, private storage: LocalStorageService) {
+  constructor(private http: HttpClient, private storage: SessionStorageService) {
     this._url = environment.BASEURL;
     if (storage.hasKey(BEARER_KEY)) {
       this._currentUser = this.callUserInformation();

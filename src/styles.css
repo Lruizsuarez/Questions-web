@@ -4,6 +4,21 @@
   padding: 0;
 }
 
+.principal-container {
+  height: 100%;
+}
+
+.error-snackbar {
+  background: rgb(250, 251, 252);
+  color: rgb(226, 93, 93);
+}
+
+.successfull-snackbar {
+  background: rgb(250, 251, 252);
+  color: rgb(39, 163, 35);
+}
+
+
 html,
 body {
   height: 100%;

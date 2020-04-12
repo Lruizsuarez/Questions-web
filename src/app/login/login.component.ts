@@ -1,4 +1,4 @@
-import { ErrorResponse } from './../models/error.model';
+import { HandledResponse } from './../models/error.model';
 import { AuthRequest } from './../models/auth.models';
 import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
     this.auth.callLoginService(request).then(() => {
       this.isLoading = false;
       this.router.navigate(['home']);
-    }).catch((err: ErrorResponse) => {
+    }).catch((err: HandledResponse) => {
       this.isLoading = false;
-      this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000 });
+      this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000, panelClass: ['error-snackbar'] });
     });
   }
 

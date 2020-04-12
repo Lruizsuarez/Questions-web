@@ -1,5 +1,5 @@
-import { ErrorResponse } from './../../models/error.model';
-import { LocalStorageService } from './../storage/local.storage.service';
+import { HandledResponse } from './../../models/error.model';
+import { SessionStorageService } from '../storage/session.storage.service';
 import { AuthRequest, AuthResponse } from './../../models/auth.models';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ export class AuthService {
 
   private _url: string;
 
-  constructor(private http: HttpClient, private storage: LocalStorageService) {
+  constructor(private http: HttpClient, private storage: SessionStorageService) {
     this._url = environment.BASEURL;
   }
 
@@ -27,9 +27,9 @@ export class AuthService {
         this.storage.store(BEARER_AUTH, JSON.stringify(authResponse.data));
       }).catch((err) => {
         if (err.error.status) {
-          throw err.error as ErrorResponse;
+          throw err.error as HandledResponse;
         } else {
-          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as ErrorResponse;
+          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }
       });
   }
@@ -40,9 +40,9 @@ export class AuthService {
         this.storage.clear();
       }).catch((err) => {
         if (err.error.status) {
-          throw err.error as ErrorResponse;
+          throw err.error as HandledResponse;
         } else {
-          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as ErrorResponse;
+          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }
       });
   }

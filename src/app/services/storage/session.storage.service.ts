@@ -1,12 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
-import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { Injectable, Inject, InjectionToken } from '@angular/core';
+import { StorageService } from 'ngx-webstorage-service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LocalStorageService {
+export const STORAGE_SERVICE = new InjectionToken<StorageService>('STORAGE_SERVICE');
 
-  constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) { }
+@Injectable()
+export class SessionStorageService {
+
+  constructor(@Inject(STORAGE_SERVICE) private storage: StorageService) { }
 
   public store(key: string, value: any): void {
     this.storage.set(key, value);

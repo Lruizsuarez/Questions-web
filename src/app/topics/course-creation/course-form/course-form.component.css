@@ -1,0 +1,73 @@
+.form-parent {
+  margin-top: 10%;
+}
+
+form {
+  width: 100%;
+}
+
+.input-value {
+  width: 80%;
+  display: inherit;
+  margin: 2% auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+.submit-btn {
+  background: rgb(28, 120, 196);
+  color: whitesmoke;
+}
+
+.submit-btn:disabled {
+  background: rgb(169, 172, 173);
+  color: black;
+}
+
+.loading {
+  position: absolute;
+  z-index: 999;
+}
+
+
+::ng-deep .successfull-snackbar .mat-simple-snackbar-action {
+  background: rgb(250, 251, 252);
+  color: rgb(39, 163, 35);
+}
+
+::ng-deep .error-snackbar .mat-simple-snackbar-action {
+  color: rgb(226, 93, 93);
+}
+
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #f44336;
+}
+
+:host ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: #f44336;
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: rgb(28, 120, 196);
+}
+
+@media only screen and (max-width: 1450px) {
+  .form-parent {
+    margin-top: 5%;
+    overflow: auto;
+  }
+}

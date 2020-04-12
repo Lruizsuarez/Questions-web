@@ -2,6 +2,7 @@ export const BEARER_KEY = 'questions.co.br';
 export const BEARER_AUTH = 'questions.co.auth';
 
 export const SIMPLE_ACTION_TEXT = 'GOT IT';
+export const GOTO_HOME_ACTION_TEXT = 'GO TO HOME';
 export const UNHANDLED_ERROR_TEXT = 'Oops , whe\'re getting errors , try again later.';
 export const TEACHER_USER_BUTTON_DESC = 'View students';
 export const STUDENT_USER_BUTTON_DESC  = 'View teacher card';

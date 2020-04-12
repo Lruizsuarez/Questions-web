@@ -1,4 +1,4 @@
-import { ErrorResponse } from './../../../models/error.model';
+import { HandledResponse } from './../../../models/error.model';
 import { catchError } from 'rxjs/operators';
 import { UserService } from './../../../services/user/user.service';
 import { Activity } from './../../../models/user.model';
@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class ActivityComponent implements OnInit {
 
   activity: Observable<Activity[] | any>;
-  error: ErrorResponse = null;
+  error: HandledResponse = null;
   GENERIC_ERROR_EMPTY_STATE = './../../../../../assets/errors/iconfinder_error_512541.png';
 
   constructor(private user: UserService) { }
@@ -22,7 +22,7 @@ export class ActivityComponent implements OnInit {
     this.activity = this.user.getActivity().pipe(
       catchError((err: any) => {
         if (err.error.status) {
-          this.error = err.error as ErrorResponse;
+          this.error = err.error as HandledResponse;
           return of();
         }
       })
