@@ -41,11 +41,14 @@ export class UserService {
   }
 
   getActivity(): Observable<Activity[]> {
-    return this.http.get<Data<Activity[]>>(`${this._url}/api/user/v1/activity`).pipe(map(activities =>  activities.data));
+    return this.http.get<Data<Activity[]>>(`${this._url}/api/user/v1/activity`).pipe(map(activities => activities.data));
   }
 
 
-  get permissions(): AuthAccess {
+  get permissions(): AuthAccess | any {
+    if (!this.storage.hasKey(BEARER_AUTH)) {
+      return null;
+    }
     return this.storage.getAsJson(BEARER_AUTH).permissions as AuthAccess;
   }
 
