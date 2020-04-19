@@ -4,7 +4,8 @@
       <img mat-card-avatar matTooltip="{{course.topic.name}}" src="{{course.topic.icon}}">
       <mat-card-title> {{course.title}} </mat-card-title>
       <mat-card-subtitle>you are {{getRole()}} in this course </mat-card-subtitle>
-      <button id="detail-button" mat-raised-button matTooltip="view course detail">
+      <button [routerLink]="['/course' , course._id , 'detail']" id="detail-button" mat-raised-button
+        matTooltip="view course detail">
         <img class="sample-icon" src="https://img.icons8.com/office/80/000000/Detail-view-of-part.png" />
       </button>
       <button id="user-button" mat-raised-button matTooltip="{{getButtonDescription()}}">

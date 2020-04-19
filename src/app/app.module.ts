@@ -20,7 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SESSION_STORAGE } from 'ngx-webstorage-service';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CoursesComponent } from './home/user-detail/courses/courses.component';
 import { UserDetailComponent } from './home/user-detail/user-detail.component';
@@ -30,6 +30,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CourseEnrollmentComponent } from './courses/course-enrollment/course-enrollment.component';
 import { CourseListComponent } from './home/user-detail/courses/course-list/course-list.component';
 import { CourseFormComponent } from './topics/course-creation/course-form/course-form.component';
+import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
+import { CourseSummaryComponent } from './courses/course-detail/course-summary/course-summary.component';
+import { CourseStudentsComponent } from './courses/course-detail/course-students/course-students.component';
 
 
 @NgModule({
@@ -44,7 +47,10 @@ import { CourseFormComponent } from './topics/course-creation/course-form/course
     CourseEnrollmentComponent,
     CourseListComponent,
     CourseCreationComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    CourseDetailComponent,
+    CourseSummaryComponent,
+    CourseStudentsComponent
   ],
   imports: [
     BrowserModule,

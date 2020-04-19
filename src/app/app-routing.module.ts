@@ -1,3 +1,4 @@
+import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
 import { CourseEnrollmentComponent } from './courses/course-enrollment/course-enrollment.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'home', component: HomeComponent
+  }, {
+    path: 'course/:id/detail', component: CourseDetailComponent
   }, {
     path: 'topics',
     children: [

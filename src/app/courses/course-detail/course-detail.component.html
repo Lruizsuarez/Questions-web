@@ -1,0 +1,10 @@
+<div class="principal-container wrapper" fxLayout="column" fxLayoutAlign="center center">
+  <div class="parent" (click)="toggleFlip()" [@flipState]="flip">
+    <div class="flip-container summary">
+      <app-course-summary></app-course-summary>
+    </div>
+    <div class="flip-container students">
+      <app-course-students></app-course-students>
+    </div>
+  </div>
+</div>

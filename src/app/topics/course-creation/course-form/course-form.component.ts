@@ -4,7 +4,7 @@ import { CoursesService } from './../../../services/courses/courses.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SIMPLE_ACTION_TEXT } from 'src/app/utils/constants';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
 @Component({
