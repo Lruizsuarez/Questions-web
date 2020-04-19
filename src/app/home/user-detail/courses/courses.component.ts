@@ -28,6 +28,12 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if (this.userInfo.permissions === null) {
+      this.router.navigate(['login']);
+      return;
+    }
+
     if (this.userInfo.permissions.permission_create_course) {
       this.isTeacher = true;
       this.courses = this.userInfo.getCreatedCourses()
