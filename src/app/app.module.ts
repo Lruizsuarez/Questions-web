@@ -33,6 +33,8 @@ import { CourseFormComponent } from './topics/course-creation/course-form/course
 import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
 import { CourseSummaryComponent } from './courses/course-detail/course-summary/course-summary.component';
 import { CourseStudentsComponent } from './courses/course-detail/course-students/course-students.component';
+import { CourseHeaderComponent } from './courses/course-detail/course-header/course-header.component';
+import { ShadowCardComponent } from './courses/course-detail/course-summary/shadow-card/shadow-card.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { CourseStudentsComponent } from './courses/course-detail/course-students
     CourseFormComponent,
     CourseDetailComponent,
     CourseSummaryComponent,
-    CourseStudentsComponent
+    CourseStudentsComponent,
+    CourseHeaderComponent,
+    ShadowCardComponent
   ],
   imports: [
     BrowserModule,

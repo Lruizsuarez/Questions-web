@@ -1,7 +1,6 @@
-import { User } from './../../models/user.model';
+import { User } from '../../models/api.model';
 import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-creation',
@@ -13,7 +12,7 @@ export class CourseCreationComponent implements OnInit {
 
   user: User;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.callUserInformation().subscribe((user: User) => this.user = user);

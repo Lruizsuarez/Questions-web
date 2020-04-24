@@ -1,5 +1,5 @@
 import { GOTO_HOME_ACTION_TEXT } from './../../../utils/constants';
-import { HandledResponse } from './../../../models/error.model';
+import { HandledResponse } from './../../../models/api.model';
 import { CoursesService } from './../../../services/courses/courses.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,7 +18,6 @@ export class CourseFormComponent implements OnInit {
   @Input() code: string;
 
   isLoading = false;
-
   courseForm: FormGroup;
 
   constructor(private location: Location,
@@ -37,16 +36,17 @@ export class CourseFormComponent implements OnInit {
   createCourse() {
     this.isLoading = true;
     const request = { ...this.courseForm.value };
-    this.coursesService.postCourse(request).then((res: HandledResponse) => {
+    this.coursesService.postCourse(request).subscribe((res: HandledResponse) => {
       this.isLoading = false;
       const ref = this.snackBar.open(res.status, GOTO_HOME_ACTION_TEXT, { duration: 10000, panelClass: ['successfull-snackbar'] });
       ref.onAction().subscribe(() => {
         this.location.back();
       });
-    }).catch((err: HandledResponse) => {
-      this.isLoading = false;
-      this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000, panelClass: ['error-snackbar'] });
-    });
+    },
+      (err: HandledResponse) => {
+        this.isLoading = false;
+        this.snackBar.open(err.status, SIMPLE_ACTION_TEXT, { duration: 5000, panelClass: ['error-snackbar'] });
+      });
   }
 
 

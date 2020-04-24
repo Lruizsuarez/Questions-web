@@ -1,5 +1,5 @@
 import { Data } from './../../models/common.model';
-import { User, Course, Activity } from './../../models/user.model';
+import { User, Course, Activity } from '../../models/api.model';
 import { BEARER_KEY, BEARER_AUTH } from './../../utils/constants';
 import { SessionStorageService } from '../storage/session.storage.service';
 import { Observable } from 'rxjs';

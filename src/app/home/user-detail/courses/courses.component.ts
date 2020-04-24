@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { HandledResponse } from './../../../models/error.model';
+import { HandledResponse } from './../../../models/api.model';
 import { Observable, of, throwError } from 'rxjs';
-import { Course } from './../../../models/user.model';
+import { Course } from '../../../models/api.model';
 import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';

@@ -2,7 +2,7 @@ import { SIMPLE_ACTION_TEXT } from './../../utils/constants';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth/auth.service';
 import { Observable } from 'rxjs';
-import { User } from './../../models/user.model';
+import { User } from '../../models/api.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

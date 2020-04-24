@@ -1,4 +1,4 @@
-import { Course } from './../../../../models/user.model';
+import { Course } from '../../../../models/api.model';
 import {
   TEACHER_USER_BUTTON,
   STUDENT_USER_BUTTON,

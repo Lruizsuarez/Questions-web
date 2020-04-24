@@ -1,7 +1,7 @@
-import { HandledResponse } from './../../../models/error.model';
+import { HandledResponse } from './../../../models/api.model';
 import { catchError } from 'rxjs/operators';
 import { UserService } from './../../../services/user/user.service';
-import { Activity } from './../../../models/user.model';
+import { Activity } from '../../../models/api.model';
 import { Observable, of } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 

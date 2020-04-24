@@ -1,10 +1,23 @@
 <div class="principal-container wrapper" fxLayout="column" fxLayoutAlign="center center">
-  <div class="parent" (click)="toggleFlip()" [@flipState]="flip">
+  <div *ngIf="$detail | async as details; else loadingOrError" class="parent" [@flipState]="flip">
     <div class="flip-container summary">
-      <app-course-summary></app-course-summary>
+      <app-course-summary [detail]="details" (flip)="toggleFlip()"></app-course-summary>
     </div>
     <div class="flip-container students">
-      <app-course-students></app-course-students>
+      <app-course-students (flip)="toggleFlip()"></app-course-students>
     </div>
   </div>
+  <ng-template #loadingOrError>
+    <div class="container" *ngIf="error != null; else loading">
+      <div class="error-image">
+        <img src="{{error.image || GENERIC_ERROR_EMPTY_STATE}}">
+      </div>
+      <div class="error-text">
+        <h3>{{error.status}}</h3>
+      </div>
+    </div>
+    <ng-template #loading>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+  </ng-template>
 </div>

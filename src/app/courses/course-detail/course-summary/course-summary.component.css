@@ -4,5 +4,31 @@
   height: 100%;
   color: black;
   background-color: white;
-  border: 1px solid;
+}
+
+
+.header-container {
+  height: 25%;
+  width: 100%;
+}
+
+.count-card {
+  height: 65%;
+  width: 100%;
+}
+
+
+.item-card {
+  width: 25%;
+  height: 70%;
+}
+
+.card-footer{
+  width: 100%;
+  height: 15%;
+}
+
+.sample-icon {
+  width: 48pt;
+  height: 48pt;
 }

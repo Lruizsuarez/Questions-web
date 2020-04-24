@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-course-students',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseStudentsComponent implements OnInit {
 
-  constructor() { }
+  @Output() flip = new EventEmitter<void>();
+
+  constructor() {
+    console.log('calling student component constructor');
+  }
 
   ngOnInit() {
+  }
+
+  performFlip() {
+    this.flip.emit();
   }
 
 }
