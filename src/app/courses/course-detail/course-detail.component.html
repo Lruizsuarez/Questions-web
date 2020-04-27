@@ -1,10 +1,12 @@
 <div class="principal-container wrapper" fxLayout="column" fxLayoutAlign="center center">
-  <div *ngIf="$detail | async as details; else loadingOrError" class="parent" [@flipState]="flip">
+  <div *ngIf="$data | async as details; else loadingOrError" class="parent" [@flipState]="flip">
     <div class="flip-container summary">
-      <app-course-summary [detail]="details" (flip)="toggleFlip()"></app-course-summary>
+      <app-course-summary [detail]="details.detail" (flip)="toggleFlip()"></app-course-summary>
     </div>
     <div class="flip-container students">
-      <app-course-students (flip)="toggleFlip()"></app-course-students>
+      <app-course-students [students]="details.students" [detail]="details.detail" [title]="details.detail.title"
+        (flip)="toggleFlip()">
+      </app-course-students>
     </div>
   </div>
   <ng-template #loadingOrError>

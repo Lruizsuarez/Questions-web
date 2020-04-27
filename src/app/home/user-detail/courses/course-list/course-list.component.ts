@@ -15,8 +15,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CourseListComponent implements OnInit {
 
   @Input() isTeacher: boolean;
-
   @Input() courses: Course[];
+  @Input() searchKeyword?: string;
 
   constructor() { }
 

@@ -1,0 +1,82 @@
+<div *ngIf="list.length > 0; else emptyState" class="principal-container list-container" fxLayout="column"
+  fxLayoutAlign="center center">
+  <div class="card-container">
+    <div *ngIf="!searching">
+      <mat-card class="student-card" (mouseover)="hover=true" (mouseout)="hover=false" *ngFor="let student of list"
+        fxLayout="row" fxLayoutAlign="center">
+        <div class="side-photo" fxLayout="column" fxLayoutAlign="center center">
+          <div class="photo-container">
+            <img class="photo" matTooltip="{{student.user_name}}" [matTooltipPosition]="['after']"
+              src="{{student.photo ||'https://www.w3schools.com/howto/img_avatar.png'}}">
+          </div>
+          <h2 class="username" [innerHTML]="student.user_name"></h2>
+          <img class="hover-icon" [ngClass]="hover? 'hover-icon-active': ''"
+            src="https://img.icons8.com/plasticine/100/000000/bookmark.png" matTooltip="califications"
+            [matTooltipPosition]="['after']" />
+        </div>
+        <div class="side-info" fxLayout="column" fxLayoutAlign="start center">
+          <p class="email" matTooltip="student email" [matTooltipPosition]="['after']">{{student.email}}</p>
+          <p class="code" matTooltip="student code" [matTooltipPosition]="['after']">{{student.code}}</p>
+          <div class="dates" fxLayout="row" fxLayoutAlign="space-evenly">
+            <div class="date">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <img class="sample-icon" src="https://img.icons8.com/clouds/100/000000/create-new.png"
+                  matTooltip="account creation date" [matTooltipPosition]="['after']" />
+              </div>
+              <p>{{getFormattedDate(student.creation_date)}} </p>
+            </div>
+            <div class="date">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <img class="sample-icon" src="https://img.icons8.com/cotton/64/000000/read.png"
+                  matTooltip="last login date" [matTooltipPosition]="['after']" />
+              </div>
+              <p>{{getFormattedDate(student.last_token_date)}} </p>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div *ngIf="searching && !sorting || searching && sorting">
+      <mat-card class="student-card" *ngFor="let student of searchList" fxLayout="row" fxLayoutAlign="center">
+        <div class="side-photo" fxLayout="column" fxLayoutAlign="center center">
+          <div class="photo-container">
+            <img class="photo" matTooltip="{{student.user_name}}" [matTooltipPosition]="['after']"
+              src="{{student.photo ||'https://www.w3schools.com/howto/img_avatar.png'}}">
+          </div>
+          <h2 class="username" [innerHTML]="student.user_name | highlight:searchKeyword"></h2>
+        </div>
+        <div class="side-info" fxLayout="column" fxLayoutAlign="start center">
+          <p class="email" matTooltip="student email" [matTooltipPosition]="['after']">{{student.email}}</p>
+          <p class="code" matTooltip="student code" [matTooltipPosition]="['after']">{{student.code}}</p>
+          <div class="dates" fxLayout="row" fxLayoutAlign="space-evenly">
+            <div class="date">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <img class="sample-icon" src="https://img.icons8.com/clouds/100/000000/create-new.png"
+                  matTooltip="account creation date" [matTooltipPosition]="['after']" />
+              </div>
+              <p>{{getFormattedDate(student.creation_date)}} </p>
+            </div>
+            <div class="date">
+              <div fxLayout="row" fxLayoutAlign="center">
+                <img class="sample-icon" src="https://img.icons8.com/cotton/64/000000/read.png"
+                  matTooltip="last login date" [matTooltipPosition]="['after']" />
+              </div>
+              <p>{{getFormattedDate(student.last_token_date)}} </p>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<ng-template #emptyState>
+  <div class="principal-container list-container" fxLayout="column" fxLayoutAlign="center center">
+    <!--pending show empty state 🙉 you dont have students-->
+    <div class="error-image">
+      <img src="{{NO_STUDENTS_EMPTY_STATE}}">
+    </div>
+    <div class="error-text">
+      <h3>Ops , we not found students in this course.. </h3>
+    </div>
+  </div>
+</ng-template>

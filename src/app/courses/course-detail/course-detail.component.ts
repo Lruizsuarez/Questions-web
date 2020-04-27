@@ -1,7 +1,7 @@
-import { catchError } from 'rxjs/operators';
-import { HandledResponse } from './../../models/api.model';
+import { catchError, map } from 'rxjs/operators';
+import { HandledResponse, User } from './../../models/api.model';
 import { Course } from './../../models/api.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { CoursesService } from './../../services/courses/courses.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -28,25 +28,36 @@ export class CourseDetailComponent implements OnInit {
 
   public flip: string;
   private id: string;
-  $detail: Observable<Course> | any;
+  $data: Observable<{ detail: Course, students: User[] }>;
   error: HandledResponse;
   GENERIC_ERROR_EMPTY_STATE = './../../../../../assets/errors/mirage-come-back-later.png';
 
   constructor(private activeRoute: ActivatedRoute, private courses: CoursesService) {
-    this.flip = activeRoute.snapshot.queryParams['init'];
-    this.id = activeRoute.snapshot.params['id'];
-
-    this.$detail = courses.getCourseDetail(this.id).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        this.error = err.error as HandledResponse;
-        return of();
-      })
-    );
+    this.flip = this.activeRoute.snapshot.queryParams['init'];
+    this.id = this.activeRoute.snapshot.params['id'];
   }
 
 
   ngOnInit() {
+    const $detail = this.courses.getCourseDetail(this.id).pipe(
+      catchError((err: any) => {
+        this.error = err.error as HandledResponse;
+        return of();
+      })
+    );
+
+    const $students = this.courses.getCourseStudents(this.id).pipe(
+      catchError((err: any) => {
+        this.error = err.error as HandledResponse;
+        return of();
+      })
+    );
+
+    this.$data = forkJoin($detail, $students).pipe(
+      map(([detail, students]: any[]) => {
+        return { detail, students };
+      })
+    );
   }
 
   toggleFlip() {

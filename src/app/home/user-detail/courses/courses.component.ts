@@ -59,6 +59,7 @@ export class CoursesComponent implements OnInit {
   }
 
   search(event: any) {
+    console.log('changed : ', event);
     this.filterError = null;
     this.isSearching = true;
     if (event.target.value.length > 0) {
@@ -72,6 +73,7 @@ export class CoursesComponent implements OnInit {
               throwError(this.filterError);
               return;
             }
+            this.searchValue = event.target.value;
             return filteredData;
           }));
     } else {
@@ -81,9 +83,9 @@ export class CoursesComponent implements OnInit {
 
   navigateToTopics() {
     if (this.isTeacher) {
-      this.router.navigateByUrl('/topics/course-creation');
+      this.router.navigate(['/topics/course-creation']);
     } else {
-      this.router.navigateByUrl('/topics/enrollment');
+      this.router.navigate(['/topics/enrollment']);
     }
   }
 

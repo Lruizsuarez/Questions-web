@@ -4,3 +4,70 @@
   height: 100%;
   background: white;
 }
+
+.search-bar {
+  background: white;
+  padding: 2%;
+  width: 100%;
+  height: 20%;
+}
+
+.search-input {
+  width: 80%;
+  margin: 2% auto;
+  color: black;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: black;
+
+}
+
+:host ::ng-deep .search-input input {
+  caret-color: black;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: black;
+}
+
+:host ::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: black;
+}
+
+#search-icon {
+  color: black;
+  width: 36px;
+}
+
+.header-container {
+  height: 25%;
+  width: 100%;
+}
+
+.students-list {
+  height: 55%;
+  width: 100%;
+  overflow: auto;
+}
+
+.icon-option {
+  font-size: 20px;
+}
+
+
+@media only screen and (max-width: 1450px) {
+  .search-bar {
+    padding: 7% 2%;
+  }
+
+  .students-list{
+    padding-top: 7%;
+  }
+}
+
+@media only screen and (max-height: 675px) {
+  .students-list{
+    padding-top: 10%;
+  }
+}

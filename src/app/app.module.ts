@@ -35,6 +35,9 @@ import { CourseSummaryComponent } from './courses/course-detail/course-summary/c
 import { CourseStudentsComponent } from './courses/course-detail/course-students/course-students.component';
 import { CourseHeaderComponent } from './courses/course-detail/course-header/course-header.component';
 import { ShadowCardComponent } from './courses/course-detail/course-summary/shadow-card/shadow-card.component';
+import { HighlightPipe } from './utils/highlight/highlight.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { StudentsListComponent } from './courses/course-detail/course-students/students-list/students-list.component';
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { ShadowCardComponent } from './courses/course-detail/course-summary/shad
     CourseSummaryComponent,
     CourseStudentsComponent,
     CourseHeaderComponent,
-    ShadowCardComponent
+    ShadowCardComponent,
+    HighlightPipe,
+    StudentsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,8 @@ import { ShadowCardComponent } from './courses/course-detail/course-summary/shad
     HttpClientModule,
     MatSnackBarModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
