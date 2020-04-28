@@ -1,11 +1,15 @@
 <div class="card-container" fxLayout="column" fxLayoutAlign="start center">
   <app-course-header [id]="detail._id" [topic]="detail.topic" [title]="detail.title" [description]="detail.description"
-    class="header-container"></app-course-header>
+    [activeFlip]="true" (flip)="performFlip()" class="header-container"></app-course-header>
   <div class="search-bar" fxLayout="row" fxLayoutAlign="space-around center">
     <mat-form-field class="search-input">
       <mat-icon id="search-icon" matPrefix>search</mat-icon>
       <input #search matInput type="text" placeholder="Search a student.." autocomplete="off"
         (change)="searchKeyword = search.value">
+      <button mat-button *ngIf="search.value.length > 0" matSuffix mat-icon-button aria-label="Clear"
+        (click)="search.value = ''; searchKeyword=''">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
     <div class="order-select">
       <mat-form-field>

@@ -87,8 +87,4 @@ export class StudentsListComponent implements OnInit, OnChanges {
     }
   }
 
-  getFormattedDate(date: string): string {
-    return date.replace(/\..*$/g, '').replace('T', '-');
-  }
-
 }

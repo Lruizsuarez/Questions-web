@@ -6,7 +6,11 @@
   box-shadow: 5px, 10px;
 }
 
-
+.flip-button {
+  position: absolute;
+  top: 5%;
+  right: 18%;
+}
 
 .side-corner-button {
   position: absolute;

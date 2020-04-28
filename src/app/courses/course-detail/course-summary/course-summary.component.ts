@@ -12,6 +12,7 @@ export class CourseSummaryComponent implements OnInit {
   @Input() detail: Course;
   @Output() flip = new EventEmitter<void>();
   items: any[];
+  NEW_COURSE_EMPTY_STATE = './../../../../assets/errors/bermuda-searching.png';
 
   constructor() { }
 

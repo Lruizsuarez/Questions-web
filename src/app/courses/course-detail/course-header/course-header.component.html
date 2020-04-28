@@ -7,9 +7,12 @@
       <button (click)="deleteCourse()" class="corner-button" mat-raised-button matTooltip="delete course">
         <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" />
       </button>
-      <button (click)="setEditing()" class="side-corner-button" mat-raised-button matTooltip="edit course"
-        [matTooltipPosition]="['before']">
+      <button (click)="setEditing()" class="side-corner-button" mat-raised-button matTooltip="edit course">
         <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
+      </button>
+      <button *ngIf="activeFlip" (click)="flipParent()" class="flip-button" mat-raised-button matTooltip="view course detail"
+        [matTooltipPosition]="['before']">
+        <img class="sample-icon" src="https://img.icons8.com/office/80/000000/Detail-view-of-part.png" />
       </button>
     </mat-card-header>
     <mat-card-content>

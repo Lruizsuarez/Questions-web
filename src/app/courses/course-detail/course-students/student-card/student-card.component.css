@@ -1,0 +1,80 @@
+.student-card {
+  margin: 2% auto;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, .14);
+  cursor: pointer;
+  transition: 0.4s;
+  display: inline;
+}
+
+.student-card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.side-photo {
+  position: relative;
+  width: 50%;
+  background-image: linear-gradient(rgba(28, 120, 196, 1), rgb(55, 26, 219));
+}
+
+.side-info {
+  position: relative;
+  width: 50%;
+}
+
+.email {
+  font-size: 20px;
+  font-weight: initial;
+  margin: 2% auto;
+}
+
+.date {
+  margin-inline: 5%;
+}
+
+.sample-icon {
+  width: 30pt;
+  height: 30pt;
+}
+
+.code {
+  font-size: 18px;
+  font-weight: lighter;
+  margin: 2% auto;
+}
+
+.photo-container {
+  margin: 2% 0;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 1% auto;
+}
+
+.username {
+  margin: 1% auto;
+  color: white;
+}
+
+.hover-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0pt;
+  width: 0pt;
+  display: none;
+  transition: width 0.4s;
+}
+
+.hover-icon-active {
+  display: flex;
+  width: 48pt;
+  height: 48pt;
+}
+
+:host::ng-deep .highlight {
+  color: rgb(28, 196, 56);
+}

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CoursesService } from './../../../services/courses/courses.service';
 import { Topic, HandledResponse } from './../../../models/api.model';
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -18,6 +18,9 @@ export class CourseHeaderComponent implements OnInit {
   @Input() topic: Topic;
   @Input() title: String;
   @Input() description: String;
+  @Input() activeFlip: boolean;
+
+  @Output() flip = new EventEmitter<void>();
 
   courseForm: FormGroup;
   isEditing = false;
@@ -38,6 +41,10 @@ export class CourseHeaderComponent implements OnInit {
   setEditing() {
     this.isEditing = !this.isEditing;
     this.courseForm.patchValue({ title: this.title, description: this.description });
+  }
+
+  flipParent() {
+    this.flip.emit();
   }
 
   updateCourse() {

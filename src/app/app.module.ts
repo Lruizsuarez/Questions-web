@@ -38,6 +38,7 @@ import { ShadowCardComponent } from './courses/course-detail/course-summary/shad
 import { HighlightPipe } from './utils/highlight/highlight.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { StudentsListComponent } from './courses/course-detail/course-students/students-list/students-list.component';
+import { StudentCardComponent } from './courses/course-detail/course-students/student-card/student-card.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { StudentsListComponent } from './courses/course-detail/course-students/s
     ShadowCardComponent,
     HighlightPipe,
     StudentsListComponent,
+    StudentCardComponent,
   ],
   imports: [
     BrowserModule,
