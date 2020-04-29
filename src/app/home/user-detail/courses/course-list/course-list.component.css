@@ -32,3 +32,7 @@
   width: 36pt;
   height: 36pt;
 }
+
+::ng-deep .highlight {
+  color: rgba(28, 120, 196, 1);
+}

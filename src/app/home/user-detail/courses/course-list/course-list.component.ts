@@ -1,4 +1,4 @@
-import { Course } from './../../../../models/user.model';
+import { Course } from '../../../../models/api.model';
 import {
   TEACHER_USER_BUTTON,
   STUDENT_USER_BUTTON,
@@ -15,8 +15,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CourseListComponent implements OnInit {
 
   @Input() isTeacher: boolean;
-
   @Input() courses: Course[];
+  @Input() searchKeyword?: string;
 
   constructor() { }
 

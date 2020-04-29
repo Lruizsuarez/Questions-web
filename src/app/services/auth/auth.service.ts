@@ -1,4 +1,4 @@
-import { HandledResponse } from './../../models/error.model';
+import { HandledResponse } from './../../models/api.model';
 import { SessionStorageService } from '../storage/session.storage.service';
 import { AuthRequest, AuthResponse } from './../../models/auth.models';
 import { environment } from './../../../environments/environment';
@@ -19,7 +19,7 @@ export class AuthService {
 
 
   callLoginService(authRequest: AuthRequest): Promise<void> {
-    const requestHeaders = { 'content-type': 'application/json', 'login-flow': 'true' };
+    const requestHeaders = { 'login-flow': 'true' };
 
     return this.http.post<AuthResponse>(`${this._url}/authentication/v1/login`, authRequest, { headers: requestHeaders })
       .toPromise().then((authResponse: AuthResponse) => {

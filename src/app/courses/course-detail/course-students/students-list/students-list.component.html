@@ -1,0 +1,24 @@
+<div *ngIf="list.length > 0; else emptyState" class="principal-container list-container" fxLayout="column"
+  fxLayoutAlign="center center">
+  <div class="card-container">
+    <div *ngIf="!searching">
+      <app-student-card *ngFor="let item of list" [student]="item"></app-student-card>
+    </div>
+    <div *ngIf="(searching && !sorting || searching && sorting)">
+      <div *ngIf="searchList.length > 0; else emptyState">
+        <app-student-card *ngFor="let item of searchList" [student]="item" [searchKeyword]="searchKeyword">
+        </app-student-card>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #emptyState>
+  <div class="principal-container list-container" fxLayout="column" fxLayoutAlign="center center">
+    <div class="error-image">
+      <img src="{{NO_STUDENTS_EMPTY_STATE}}">
+    </div>
+    <div class="error-text">
+      <h3>Ops , we not found students {{searchKeyword? 'with ' + searchKeyword : 'for this course'}}.. </h3>
+    </div>
+  </div>
+</ng-template>

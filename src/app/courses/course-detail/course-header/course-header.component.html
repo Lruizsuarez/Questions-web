@@ -1,0 +1,56 @@
+<div class="principal-container">
+  <mat-card class="card" *ngIf="!isEditing">
+    <mat-card-header>
+      <img mat-card-avatar matTooltip="{{topic.name}}" src="{{topic.icon}}">
+      <mat-card-title> {{title}} </mat-card-title>
+      <mat-card-subtitle>you are Teacher in this course </mat-card-subtitle>
+      <button (click)="deleteCourse()" class="corner-button" mat-raised-button matTooltip="delete course">
+        <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" />
+      </button>
+      <button (click)="setEditing()" class="side-corner-button" mat-raised-button matTooltip="edit course">
+        <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
+      </button>
+      <button *ngIf="activeFlip" (click)="flipParent()" class="flip-button" mat-raised-button matTooltip="view course detail"
+        [matTooltipPosition]="['before']">
+        <img class="sample-icon" src="https://img.icons8.com/office/80/000000/Detail-view-of-part.png" />
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="description">
+        <p>
+          {{description}}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="card" *ngIf="isEditing">
+    <mat-card-header>
+      <button (click)="setEditing()" class="corner-button" mat-raised-button matTooltip="cancel">
+        <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/cancel.png" />
+      </button>
+      <button (click)="updateCourse()" class="side-corner-button" mat-raised-button matTooltip="save course"
+        [matTooltipPosition]="['before']">
+        <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
+      </button>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center start">
+      <form class="form-container" [formGroup]="courseForm">
+        <mat-form-field class="input-value">
+          <input matInput placeholder="course-title" autocomplete="off" formControlName="title">
+          <mat-error
+            *ngIf="(courseForm.controls['title'].dirty || courseForm.controls['title'].touched) && courseForm.controls['title'].errors?.required">
+            please enter a title</mat-error>
+        </mat-form-field>
+        <mat-form-field class="description-value">
+          <mat-label> Course description</mat-label>
+          <textarea #areaselector matInput cdkTextareaAutosize="true" autocomplete="off" maxlength="300"
+            formControlName="description"></textarea>
+          <mat-error
+            *ngIf="(courseForm.controls['description'].dirty || courseForm.controls['description'].touched) && courseForm.controls['description'].errors?.required">
+            please enter a description</mat-error>
+          <mat-hint>{{areaselector.value.length}} / 300</mat-hint>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

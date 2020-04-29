@@ -6,8 +6,7 @@
           <h2>MY COURSES</h2>
           <mat-form-field class="search-input">
             <mat-icon id="search-icon" matPrefix>search</mat-icon>
-            <input matInput type="text" placeholder="Search" (change)="search($event)"
-              autocomplete="off">
+            <input matInput type="text" placeholder="Search" (change)="search($event)" autocomplete="off">
           </mat-form-field>
         </div>
         <div>
@@ -15,11 +14,12 @@
             <app-course-list [isTeacher]="isTeacher" [courses]="data"></app-course-list>
           </div>
           <div *ngIf="isSearching">
-            <div *ngIf="filteredCourses | async as filteredData;else filterLoadingOrError">
-              <app-course-list [isTeacher]="isTeacher" [courses]="filteredData"></app-course-list>
+            <div *ngIf="filteredCourses | async as filteredData ; else noData">
+              <app-course-list [isTeacher]="isTeacher" [courses]="filteredData" [searchKeyword]="searchValue">
+              </app-course-list>
             </div>
-            <ng-template #filterLoadingOrError>
-              <div class="filter-container" *ngIf="filterError != null; else filterLoading">
+            <ng-template #noData>
+              <div class="filter-container" *ngIf="filterError">
                 <div class="container" fxLayout="column" fxLayoutAlign="center center">
                   <div class="filter-error-image">
                     <img src="{{EMPTY_QUERY_EMPTY_STATE}}">
@@ -29,11 +29,6 @@
                   </div>
                 </div>
               </div>
-              <ng-template #filterLoading>
-                <div class="filter-container" fxLayout="column" fxLayoutAlign="center center">
-                  <mat-spinner></mat-spinner>
-                </div>
-              </ng-template>
             </ng-template>
           </div>
         </div>
@@ -51,7 +46,6 @@
           </div>
           <button (click)="navigateToTopics()" id="start-btn" *ngIf="error.image" mat-button> START </button>
         </div>
-
       </div>
       <ng-template #loading>
         <div class="container" fxLayout="column" fxLayoutAlign="center center">

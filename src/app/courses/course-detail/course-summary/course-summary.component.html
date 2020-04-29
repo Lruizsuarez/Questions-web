@@ -1,0 +1,32 @@
+<div class="card-container" fxLayout="column" fxLayoutAlign="start center">
+  <app-course-header [id]="detail._id" [topic]="detail.topic" [title]="detail.title" [description]="detail.description"
+    class="header-container"></app-course-header>
+  <div class="count-card" fxLayout="row" fxLayoutAlign="space-around center">
+    <div *ngIf="detail.exams_count > 0 && detail.sections_count > 0;else newCourse">
+      <div class="item-card" *ngFor="let item of items">
+        <app-shadow-card [image]="item.image" [title]="item.title" [footerInfo]="item.footerInfo"
+          [animated]="item.animated" [count]="item.count" [countToolTip]="item.countToolTip"
+          (cardClick)="performFlip()">
+        </app-shadow-card>
+      </div>
+    </div>
+    <ng-template #newCourse>
+      <div class="container" fxLayout="column" fxLayoutAlign="center center">
+        <div class="error-image">
+          <img src="{{NEW_COURSE_EMPTY_STATE}}">
+        </div>
+        <div class="error-text">
+          <h3>Hey , you dont have questions yet!</h3>
+        </div>
+        <button id="start-btn" mat-button> START </button>
+      </div>
+    </ng-template>
+  </div>
+  <div class="card-footer" fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/approve-and-update.png"
+        matTooltip="last update date" />
+      <p>{{getFormattedDate(detail.last_update_date)}} </p>
+    </div>
+  </div>
+</div>

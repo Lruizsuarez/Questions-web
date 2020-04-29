@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { HandledResponse } from './../../../models/error.model';
+import { HandledResponse } from './../../../models/api.model';
 import { Observable, of, throwError } from 'rxjs';
-import { Course } from './../../../models/user.model';
+import { Course } from '../../../models/api.model';
 import { UserService } from './../../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
@@ -59,6 +59,7 @@ export class CoursesComponent implements OnInit {
   }
 
   search(event: any) {
+    console.log('changed : ', event);
     this.filterError = null;
     this.isSearching = true;
     if (event.target.value.length > 0) {
@@ -72,6 +73,7 @@ export class CoursesComponent implements OnInit {
               throwError(this.filterError);
               return;
             }
+            this.searchValue = event.target.value;
             return filteredData;
           }));
     } else {
@@ -81,9 +83,9 @@ export class CoursesComponent implements OnInit {
 
   navigateToTopics() {
     if (this.isTeacher) {
-      this.router.navigateByUrl('/topics/course-creation');
+      this.router.navigate(['/topics/course-creation']);
     } else {
-      this.router.navigateByUrl('/topics/enrollment');
+      this.router.navigate(['/topics/enrollment']);
     }
   }
 

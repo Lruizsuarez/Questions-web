@@ -1,4 +1,4 @@
-import { HandledResponse } from './../models/error.model';
+import { HandledResponse } from './../models/api.model';
 import { AuthRequest } from './../models/auth.models';
 import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
