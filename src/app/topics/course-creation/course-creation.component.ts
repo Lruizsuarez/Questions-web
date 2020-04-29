@@ -9,22 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseCreationComponent implements OnInit {
 
-
   user: User;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.callUserInformation().subscribe((user: User) => this.user = user);
-  }
-
-
-  getPhoto(): string {
-    if (this.user.photo) {
-      return `data:image/png;base64,${this.user.photo}`;
-    } else {
-      return 'https://www.w3schools.com/howto/img_avatar.png';
-    }
   }
 
 }

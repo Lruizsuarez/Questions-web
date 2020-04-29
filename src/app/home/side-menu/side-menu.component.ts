@@ -18,7 +18,7 @@ export class SideMenuComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router, private snackBar: MatSnackBar) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   doLogout() {
     this.auth.callLogoutService().then(() => {

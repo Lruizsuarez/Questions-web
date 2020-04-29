@@ -2,11 +2,16 @@ export interface User {
   user_name: string;
   email: string;
   code: number;
-  photo?: string;
+  photo?: Photo;
   topic?: Topic;
   creation_date: Date;
   last_update_date: Date;
   last_token_date?: Date;
+}
+
+export interface Photo {
+  content: string;
+  content_type: string;
 }
 
 

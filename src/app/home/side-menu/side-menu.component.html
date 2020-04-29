@@ -1,27 +1,29 @@
-<div class="centered" fxLayout="column" fxLayoutAlign="start center">
+<div *ngIf="user | async as usr" class="centered" fxLayout="column" fxLayoutAlign="start center">
   <div id="avatar-img">
-    <img src="https://www.w3schools.com/howto/img_avatar.png" class="header-image">
+    <img
+      src="{{'data:' + usr.photo.content_type + ';base64,' +  usr.photo.content || 'https://www.w3schools.com/howto/img_avatar.png'}}"
+      class="header-image">
   </div>
   <div>
-    <h2 class="simple-text">{{(user| async)?.user_name}}</h2>
-    <h5 class="simple-text">{{(user | async)?.email}}</h5>
-    <h6 class="simple-text">{{(user | async)?.code}}</h6>
+    <h2 class="simple-text">{{usr.user_name}}</h2>
+    <h5 class="simple-text">{{usr.email}}</h5>
+    <h6 class="simple-text">{{usr.code}}</h6>
   </div>
   <button id="profile-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
-      <img fxFlex="10" class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/contract-job.png"/>
+      <img fxFlex="10" class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/contract-job.png" />
       <label class="menu-label" fxFlex="60">Profile</label>
     </div>
   </button>
   <button id="courses-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
-      <img fxFlex="10" class="sample-icon" src="https://img.icons8.com/doodle/96/000000/books.png"/>
+      <img fxFlex="10" class="sample-icon" src="https://img.icons8.com/doodle/96/000000/books.png" />
       <label class="menu-label" fxFlex="60">Courses</label>
     </div>
   </button>
   <button id="stadistics-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
-      <img fxFlex="10" class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/statistics.png"/>
+      <img fxFlex="10" class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/statistics.png" />
       <label class="menu-label" fxFlex="60">Stadistics</label>
     </div>
   </button>
