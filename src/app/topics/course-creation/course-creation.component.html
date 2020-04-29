@@ -1,0 +1,39 @@
+<div class="principal-container" fxLayout="row" fxLayoutAlign="center">
+  <mat-card class="unbordered-card" fxFlex="50" fxFlexAlign="center">
+    <div class="header" fxLayout="row" fxLayoutAlign="center" *ngIf="user">
+      <div id="avatar-image" fxFlex="20">
+        <img class="header-image"
+          src="{{'data:' + user.photo.content_type + ';base64,' +  user.photo.content || 'https://www.w3schools.com/howto/img_avatar.png'}}">
+      </div>
+      <div class="information-area" fxLayout="column" fxLayoutAlign="center" fxFlex="80">
+        <div class="title-area" fxLayout="row" fxFlex="30">
+          <h1 class="card-title" fxFlex="90"> COURSE CREATION </h1>
+          <img matTooltip="creating {{user.topic.name}} course" matTooltipPosition="after" class="sample-icon"
+            fxFlex="10" src="{{user.topic.icon}}">
+        </div>
+
+        <div class="teacher-info" fxFlex="70">
+          <p>hey {{user.user_name}}! , there are some information you must fill to complete the course
+            creation.</p>
+          <div class="single-info">
+            <p> <b><em>email :</em></b> {{user.email}} </p>
+            <p><b><em>topic :</em></b> {{user.topic.name}} </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <mat-card-content class="content">
+
+      <div *ngIf="user; else loadingOrError">
+        <app-course-form [email]="user.email" [code]="user.code"></app-course-form>
+      </div>
+      <ng-template #loadingOrError>
+        <div class="centered" fxLayout="column" fxLayoutAlign="center center">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </mat-card-content>
+
+  </mat-card>
+</div>

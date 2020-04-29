@@ -1,0 +1,57 @@
+<div class="principal-container">
+  <mat-card fxFlex="100" class="unbordered-card list-container">
+    <div *ngIf="courses | async as data; else loadingOrError">
+      <div class="courses-container" fxLayout="column" fxLayoutAlign="start">
+        <div class="courses-title">
+          <h2>MY COURSES</h2>
+          <mat-form-field class="search-input">
+            <mat-icon id="search-icon" matPrefix>search</mat-icon>
+            <input matInput type="text" placeholder="Search" (change)="search($event)" autocomplete="off">
+          </mat-form-field>
+        </div>
+        <div>
+          <div *ngIf="!isSearching">
+            <app-course-list [isTeacher]="isTeacher" [courses]="data"></app-course-list>
+          </div>
+          <div *ngIf="isSearching">
+            <div *ngIf="filteredCourses | async as filteredData ; else noData">
+              <app-course-list [isTeacher]="isTeacher" [courses]="filteredData" [searchKeyword]="searchValue">
+              </app-course-list>
+            </div>
+            <ng-template #noData>
+              <div class="filter-container" *ngIf="filterError">
+                <div class="container" fxLayout="column" fxLayoutAlign="center center">
+                  <div class="filter-error-image">
+                    <img src="{{EMPTY_QUERY_EMPTY_STATE}}">
+                  </div>
+                  <div class="error-text">
+                    <h4>{{filterError}}</h4>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <ng-template #loadingOrError>
+      <div class="container" *ngIf="error != null; else loading">
+        <div class="container" fxLayout="column" fxLayoutAlign="center center">
+          <div class="error-image">
+            <img src="{{error.image || GENERIC_ERROR_EMPTY_STATE}}">
+          </div>
+          <div class="error-text">
+            <h3>{{error.status}}</h3>
+          </div>
+          <button (click)="navigateToTopics()" id="start-btn" *ngIf="error.image" mat-button> START </button>
+        </div>
+      </div>
+      <ng-template #loading>
+        <div class="container" fxLayout="column" fxLayoutAlign="center center">
+          <mat-spinner></mat-spinner>
+        </div>
+      </ng-template>
+    </ng-template>
+  </mat-card>
+</div>

@@ -1,0 +1,51 @@
+.centered {
+  height: max-content;
+  background: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.header-image {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+#avatar-img {
+  margin: 2% auto;
+}
+
+.simple-text {
+  text-align: center;
+  margin: 2% auto;
+}
+
+.menu-button {
+  width: 80%;
+  margin: 2% auto;
+}
+
+.sample-icon {
+  font-size: 30px;
+}
+
+.button-content {
+  margin: 2% auto;
+  font-size: 12pt;
+  color: rgba(28, 120, 196, 1);
+}
+
+.menu-label {
+  margin-top: 2%;
+}
+
+
+.logout-content {
+  color: rgb(228, 94, 85);
+}
+
+::ng-deep .error-snackbar .mat-simple-snackbar-action {
+  color: rgb(226, 93, 93);
+}

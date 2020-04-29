@@ -1,0 +1,72 @@
+.img-margin {
+  margin: 25% 0;
+}
+
+.login-btn {
+  width: 100%;
+  margin: 5% 0;
+  padding: 0 5%;
+  background: #004578;
+}
+
+#login-spinner {
+  position: absolute;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+
+.input-value {
+  width: 80%;
+  display: inherit;
+  margin: 2% auto;
+}
+
+.submit-btn {
+  background: rgb(13, 10, 117);
+  color: whitesmoke;
+  width: 50%;
+}
+
+form {
+  width: 50%;
+}
+
+.principal {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.submit-btn:disabled {
+  background: rgb(169, 172, 173);
+  color: whitesmoke;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #f44336;
+}
+
+:host ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  background-color: #f44336;
+}
+
+::ng-deep .error-snackbar .mat-simple-snackbar-action {
+  color: rgb(226, 93, 93);
+}

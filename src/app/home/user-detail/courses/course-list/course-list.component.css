@@ -1,0 +1,38 @@
+.card {
+  margin: 2% 2%;
+}
+
+.card:hover {
+  box-shadow: 5px, 10px;
+}
+
+
+.footer {
+  display: inline;
+}
+
+.footer>div>p {
+  margin: 2% 2%;
+  text-align: center;
+}
+
+#detail-button {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+}
+
+#user-button {
+  position: absolute;
+  top: 5%;
+  right: 15%;
+}
+
+.sample-icon {
+  width: 36pt;
+  height: 36pt;
+}
+
+::ng-deep .highlight {
+  color: rgba(28, 120, 196, 1);
+}

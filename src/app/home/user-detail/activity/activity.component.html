@@ -1,0 +1,29 @@
+<div class="principal-container" fxLayout="column">
+  <mat-card fxFlex="100" class="unbordered-card">
+    <div *ngIf="activity | async as data; else loadingOrError">
+      <div class="principal-container" fxLayout="column" fxLayoutAlign="start">
+        <div class="title">
+          <h2> MY ACTIVITY </h2>
+        </div>
+        <div class="activity-container">
+          <div *ngFor="let item of data">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>{{item.activity}}</mat-card-title>
+                <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+                <div matTooltip="{{item.activity}}" class="icon-container">
+                  <img class="sample-icon" src="{{item.icon}}">
+                </div>
+              </mat-card-header>
+              <div class="date">
+                <p>{{getFormattedDate(item.activity_date)}}</p>
+              </div>
+            </mat-card>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <ng-template #loadingOrError></ng-template>
+  </mat-card>
+</div>

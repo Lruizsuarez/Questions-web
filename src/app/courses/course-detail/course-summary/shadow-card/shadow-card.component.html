@@ -1,0 +1,17 @@
+<div class="shadow-card" (click)="navigate()" (mouseover)="showTitle=true" (mouseout)="showTitle=false">
+  <img src="{{image}}">
+  <div class="shadow-card-title gradient-background" [ngClass]="showTitle?'shadow-card-title-active' :''" fxLayout="row"
+    fxLayoutAlign="center center">
+    <p>{{title}}</p>
+  </div>
+  <div class="card-footer gradient-background" [ngClass]="showTitle? 'description': ''" fxLayout="row"
+    fxLayoutAlign="start">
+    <div class="text">
+      <p>{{footerInfo}}</p>
+    </div>
+    <div class="count" [ngClass]="showTitle? 'count-active': ''" matTooltip="{{countToolTip}}"
+      [matTooltipPosition]="['after']">
+      <p>{{count}}</p>
+    </div>
+  </div>
+</div>

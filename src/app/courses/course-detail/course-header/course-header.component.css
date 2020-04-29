@@ -1,0 +1,80 @@
+.card {
+  height: 100%;
+}
+
+.card:hover {
+  box-shadow: 5px, 10px;
+}
+
+.flip-button {
+  position: absolute;
+  top: 5%;
+  right: 18%;
+}
+
+.side-corner-button {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+}
+
+.corner-button {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+}
+
+.sample-icon {
+  width: 36pt;
+  height: 36pt;
+}
+
+
+:host::ng-deep.mat-card-avatar {
+  height: 100px;
+  width: 100px;
+}
+
+:host ::ng-deep .mat-card-header .mat-card-title {
+  font-size: 30px;
+}
+
+:host::ng-deep.mat-card-subtitle {
+  font-size: 16px;
+}
+
+.input-value {
+  width: 80%;
+}
+
+.description-value {
+  width: 80%;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(28, 120, 196);
+}
+
+.description {
+  position: absolute;
+  top: 50%;
+  left: 9%;
+}
+
+.form-container {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1450px) {
+  .description {
+    left: 12%;
+  }
+
+  .description-value {
+    width: 90%;
+  }
+}
