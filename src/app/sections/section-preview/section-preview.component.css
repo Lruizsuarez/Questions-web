@@ -1,0 +1,59 @@
+.close-padding {
+  padding: 2%;
+}
+
+
+.title {
+  width: 50%;
+}
+
+
+.cards-container {
+  margin: 5%;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-children {
+  cursor: pointer;
+  flex-basis: 40%;
+  margin: 2%;
+  transition: 0.4s;
+}
+
+.card-children:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.centered-card {
+  margin: 2% auto;
+}
+
+.type-1 {
+  background-color: rgb(101, 72, 207);
+  color: white;
+}
+
+
+.type-2 {
+  background-color: rgb(230, 94, 94);
+  color: white;
+}
+
+.type-3 {
+  background-color: rgba(28, 120, 196, 1);
+  color: white;
+}
+
+.type-4 {
+  background: rgb(67, 192, 67);
+  background-color: rgb(67, 192, 67);
+  color: white;
+}
+
+.type-5 {
+  background-color: rgb(215, 226, 52);
+  color: black;
+}

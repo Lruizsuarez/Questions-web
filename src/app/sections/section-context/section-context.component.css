@@ -1,0 +1,26 @@
+.title-text {
+  width: 70%;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.context-text {
+  width: 70%;
+}
+
+.side-corner-button {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+}
+
+.corner-button {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+}
+
+.sample-icon {
+  width: 36pt;
+  height: 36pt;
+}

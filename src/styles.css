@@ -8,6 +8,10 @@
   height: 100%;
 }
 
+.max-width-container {
+  width: 100%;
+}
+
 .error-snackbar {
   background: rgb(250, 251, 252);
   color: rgb(226, 93, 93);

@@ -1,3 +1,4 @@
+import { CourseEnrollmentComponent } from './topics/course-enrollment/course-enrollment.component';
 import { CourseCreationComponent } from './topics/course-creation/course-creation.component';
 import { STORAGE_SERVICE, SessionStorageService } from './services/storage/session.storage.service';
 import { AuthInterceptor } from './helpers/AuthInterceptor';
@@ -27,7 +28,6 @@ import { UserDetailComponent } from './home/user-detail/user-detail.component';
 import { ActivityComponent } from './home/user-detail/activity/activity.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CourseEnrollmentComponent } from './courses/course-enrollment/course-enrollment.component';
 import { CourseListComponent } from './home/user-detail/courses/course-list/course-list.component';
 import { CourseFormComponent } from './topics/course-creation/course-form/course-form.component';
 import { CourseDetailComponent } from './courses/course-detail/course-detail.component';
@@ -39,6 +39,14 @@ import { HighlightPipe } from './utils/highlight/highlight.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { StudentsListComponent } from './courses/course-detail/course-students/students-list/students-list.component';
 import { StudentCardComponent } from './courses/course-detail/course-students/student-card/student-card.component';
+import { SectionPreviewComponent } from './sections/section-preview/section-preview.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ImageRelationshipComponent } from './sections/image-relationship/image-relationship.component';
+import { VocabularyIndentificationComponent } from './sections/vocabulary-indentification/vocabulary-indentification.component';
+import { ConversationRelationshipComponent } from './sections/conversation-relationship/conversation-relationship.component';
+import { ReadingComprehensionComponent } from './sections/reading-comprehension/reading-comprehension.component';
+import { MultipleSelectionComponent } from './sections/multiple-selection/multiple-selection.component';
+import { SectionContextComponent } from './sections/section-context/section-context.component';
 
 
 @NgModule({
@@ -50,7 +58,6 @@ import { StudentCardComponent } from './courses/course-detail/course-students/st
     CoursesComponent,
     UserDetailComponent,
     ActivityComponent,
-    CourseEnrollmentComponent,
     CourseListComponent,
     CourseCreationComponent,
     CourseFormComponent,
@@ -59,9 +66,17 @@ import { StudentCardComponent } from './courses/course-detail/course-students/st
     CourseStudentsComponent,
     CourseHeaderComponent,
     ShadowCardComponent,
-    HighlightPipe,
     StudentsListComponent,
     StudentCardComponent,
+    CourseEnrollmentComponent,
+    SectionPreviewComponent,
+    HighlightPipe,
+    ImageRelationshipComponent,
+    VocabularyIndentificationComponent,
+    ConversationRelationshipComponent,
+    ReadingComprehensionComponent,
+    MultipleSelectionComponent,
+    SectionContextComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +95,8 @@ import { StudentCardComponent } from './courses/course-detail/course-students/st
     MatSnackBarModule,
     MatTooltipModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

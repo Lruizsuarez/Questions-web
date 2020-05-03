@@ -1,0 +1,32 @@
+<mat-card class="principal-container max-width-container">
+  <mat-card-header>
+    <button class="corner-button" mat-raised-button matTooltip="delete section">
+      <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" />
+    </button>
+    <button *ngIf="!isEditing" class="side-corner-button" mat-raised-button matTooltip="edit section">
+      <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
+    </button>
+    <button *ngIf="isEditing" class="side-corner-button" mat-raised-button matTooltip="save section">
+      <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
+    </button>
+  </mat-card-header>
+  <form [formGroup]="sectionForm">
+    <mat-form-field class="title-text">
+      <input matInput formControlName="sectionTitle" placeholder="{{title? 'title' : 'put a section title'}}"
+        [value]="title? title : ''">
+    </mat-form-field>
+    <mat-form-field class="context-text">
+      <textarea #textarea matInput cdkTextareaAutosize="true" autocomplete="off" maxlength="{{contextMaxLength}}"
+        placeholder="{{context? 'context' : 'put a section context'}}" formControlName="sectionContext"
+        [value]="context? context : ''"></textarea>
+      <mat-error
+        *ngIf="(sectionForm.controls['sectionContext'].dirty || sectionForm.controls['sectionContext'].touched) && sectionForm.controls['sectionContext'].errors?.required">
+        please enter a section context</mat-error>
+      <button mat-button *ngIf="textarea.value.length > 0 && sectionForm.controls['sectionContext'].enabled" matSuffix
+        mat-icon-button aria-label="Clear" (click)="textarea.value =''; sectionForm.controls['sectionContext'].reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint>{{textarea.value.length}} / {{contextMaxLength}}</mat-hint>
+    </mat-form-field>
+  </form>
+</mat-card>
