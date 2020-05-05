@@ -1,0 +1,30 @@
+.upload-container {
+  position: absolute;
+  top: 25%;
+  right: 2%;
+  height: auto;
+}
+
+.upload-button {
+  border: 1px solid rgb(104, 199, 243);
+  color: rgb(17, 21, 59);
+  width: 200px;
+}
+
+.button-icon {
+  width: 20pt;
+  height: 20pt;
+  margin-right: 5px;
+}
+
+
+.progress {
+  height: 2px;
+  width: 200px;
+}
+
+
+.progress-bar {
+  height: 2px;
+  background-color: rgb(67, 192, 67);
+}

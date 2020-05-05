@@ -10,8 +10,8 @@ export interface User {
 }
 
 export interface Photo {
-  content: string;
-  content_type: string;
+  content?: string;
+  content_type?: string;
 }
 
 

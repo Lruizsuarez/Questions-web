@@ -1,0 +1,5 @@
+<div class="principal-container max-width-container" fxLayout="row" fxLayoutAlign="center start">
+  <app-section-context class="context-container" [contextMaxLength]="500"
+    (clickedImage)="handleContextImageClick($event)"></app-section-context>
+</div>
+<app-image-focus *ngIf="imageContent" [image]="imageContent" (close)="imageContent = null"></app-image-focus>

@@ -1,13 +1,13 @@
-<div *ngIf="user | async as usr" class="centered" fxLayout="column" fxLayoutAlign="start center">
+<div *ngIf="user | async as user_info" class="centered" fxLayout="column" fxLayoutAlign="start center">
   <div id="avatar-img">
     <img
-      src="{{'data:' + usr.photo.content_type + ';base64,' +  usr.photo.content || 'https://www.w3schools.com/howto/img_avatar.png'}}"
+      src="{{ user_info.photo? 'data:' + user_info.photo.content_type + ';base64,' +  user_info.photo.content : 'https://www.w3schools.com/howto/img_avatar.png'}}"
       class="header-image">
   </div>
   <div>
-    <h2 class="simple-text">{{usr.user_name}}</h2>
-    <h5 class="simple-text">{{usr.email}}</h5>
-    <h6 class="simple-text">{{usr.code}}</h6>
+    <h2 class="simple-text">{{user_info.user_name}}</h2>
+    <h5 class="simple-text">{{user_info.email}}</h5>
+    <h6 class="simple-text">{{user_info.code}}</h6>
   </div>
   <button id="profile-btn" class="menu-button" mat-button>
     <div class="button-content" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
