@@ -47,6 +47,8 @@ import { ConversationRelationshipComponent } from './sections/conversation-relat
 import { ReadingComprehensionComponent } from './sections/reading-comprehension/reading-comprehension.component';
 import { MultipleSelectionComponent } from './sections/multiple-selection/multiple-selection.component';
 import { SectionContextComponent } from './sections/section-context/section-context.component';
+import { FileUploadComponent } from './shared/file-upload/file-upload.component';
+import { ImageFocusComponent } from './shared/image-focus/image-focus.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { SectionContextComponent } from './sections/section-context/section-cont
     ReadingComprehensionComponent,
     MultipleSelectionComponent,
     SectionContextComponent,
+    FileUploadComponent,
+    ImageFocusComponent,
   ],
   imports: [
     BrowserModule,

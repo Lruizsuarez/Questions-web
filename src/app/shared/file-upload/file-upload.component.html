@@ -1,0 +1,9 @@
+<div class="principal-container upload-container" fxLayout="column" fxLayoutAlign="center center">
+  <input #upload hidden="true" type="file" accept="image/*" (change)="performUpload($event)" />
+  <button class="upload-button" mat-button (click)="upload.click()">
+    <img class="button-icon" src="{{icon}}">
+    {{text}} </button>
+  <div class="progress" *ngIf="percentage > 0">
+    <div class="progress-bar" role="progressbar" [style.width.%]="percentage"></div>
+  </div>
+</div>

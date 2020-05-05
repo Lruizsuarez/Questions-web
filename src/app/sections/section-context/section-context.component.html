@@ -29,4 +29,12 @@
       <mat-hint>{{textarea.value.length}} / {{contextMaxLength}}</mat-hint>
     </mat-form-field>
   </form>
+  <div class="image-container" fxLayout="row" fxLayoutAlign="flex-end">
+    <img *ngIf="image; else uploadButton" class="context-image" src="{{image.content}}" (click)="focusImage()">
+    <ng-template #uploadButton>
+      <app-file-upload [text]="'UPLOAD'" [icon]="'https://img.icons8.com/cotton/64/000000/upload.png'"
+        [type]="'image/**'" (fileTransformed)="saveImage($event)">
+      </app-file-upload>
+    </ng-template>
+  </div>
 </mat-card>

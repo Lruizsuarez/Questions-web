@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageRelationshipComponent implements OnInit {
 
+  imageContent: string;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handleContextImageClick(image: string) {
+    this.imageContent = image;
   }
 
 }
