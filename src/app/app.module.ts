@@ -4,7 +4,6 @@ import { STORAGE_SERVICE, SessionStorageService } from './services/storage/sessi
 import { AuthInterceptor } from './helpers/AuthInterceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -52,6 +51,26 @@ import { ImageFocusComponent } from './shared/image-focus/image-focus.component'
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    FontAwesomeModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatInputModule,
+    MatDividerModule,
+    MatIconModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatChipsModule
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -81,26 +100,6 @@ import { ImageFocusComponent } from './shared/image-focus/image-focus.component'
     SectionContextComponent,
     FileUploadComponent,
     ImageFocusComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    FlexLayoutModule,
-    FontAwesomeModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatInputModule,
-    MatDividerModule,
-    MatIconModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatTooltipModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatChipsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

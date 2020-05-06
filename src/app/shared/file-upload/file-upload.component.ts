@@ -26,7 +26,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reader.onload = (event: ProgressEvent<FileReader>) => {
+    this.reader.onload = (event: ProgressEvent) => {
       this.percentage = event.loaded * 100 / event.total;
       this.processedFile.content = this.reader.result as string;
     };
