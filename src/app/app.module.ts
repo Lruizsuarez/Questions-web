@@ -48,6 +48,9 @@ import { MultipleSelectionComponent } from './sections/multiple-selection/multip
 import { SectionContextComponent } from './sections/section-context/section-context.component';
 import { FileUploadComponent } from './shared/file-upload/file-upload.component';
 import { ImageFocusComponent } from './shared/image-focus/image-focus.component';
+import { RelationshipQuestionComponent } from './shared/relationship-question/relationship-question.component';
+import { RelationshipOptionComponent } from './shared/relationship-option/relationship-option.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -69,7 +72,8 @@ import { ImageFocusComponent } from './shared/image-focus/image-focus.component'
     MatTooltipModule,
     MatDialogModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    DragDropModule
   ],
   declarations: [
     AppComponent,
@@ -100,6 +104,8 @@ import { ImageFocusComponent } from './shared/image-focus/image-focus.component'
     SectionContextComponent,
     FileUploadComponent,
     ImageFocusComponent,
+    RelationshipQuestionComponent,
+    RelationshipOptionComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

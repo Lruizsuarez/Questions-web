@@ -1,5 +1,60 @@
-<div class="principal-container max-width-container" fxLayout="row" fxLayoutAlign="center start">
-  <app-section-context class="context-container" [contextMaxLength]="500"
-    (clickedImage)="handleContextImageClick($event)"></app-section-context>
+<div *ngIf="!error ;else errorView" class="principal-container max-width-container" fxLayout="column"
+  fxLayoutAlign="start center">
+  <div class="context-container" *ngIf="$data ;else creationflow">
+    <div class="context-wrapper" *ngIf="$data | async as section ;else loading">
+      <app-section-context class="context-container no-margin" [contextMaxLength]="500" [courseId]="cid"
+        [sectionId]="sid" [sectionType]="SECTION_TYPE" [title]="section.title" [context]="section.context"
+        [image]="section.image" [example]="section.question" (clickedImage)="handleContextImageClick($event)"
+        (performedDeletion)="clearSID()">
+      </app-section-context>
+    </div>
+    <ng-template #loading>
+      <div class="context-wrapper" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #creationflow>
+    <app-section-context class="context-container" [contextMaxLength]="500" [courseId]="cid"
+      [sectionType]="SECTION_TYPE" (clickedImage)="handleContextImageClick($event)"
+      (performedCreation)="handlePerformedCreation($event)" (performedDeletion)="clearSID()">
+    </app-section-context>
+  </ng-template>
+  <div class="content-container">
+    <mat-card class="principal-container max-width-container content">
+      <div class="half-container divider" fxLayout="column" fxLayoutAlign="start center">
+        <div class="title" fxLayout="row">
+          <h2 class="half-container principal-title"> QUESTIONS </h2>
+          <h3 class="half-container centered-align">{{submited_questions +  '/' + max_questions}}</h3>
+        </div>
+        <div cdkDropList #questions="cdkDropList" id="questions" [cdkDropListConnectedTo]="options"
+          (cdkDropListDropped)="makeRelation($event)" class="card-list" fxLayout="column" fxLayoutAlign="start center">
+          <app-relationship-question *ngFor="let number of questionCounter()" class="card-component">
+          </app-relationship-question>
+        </div>
+      </div>
+      <div class="half-container" fxLayout="column" fxLayoutAlign="start center">
+        <div class="title" fxLayout="row">
+          <h2 class="half-container principal-title"> OPTIONS </h2>
+          <h3 class="half-container centered-align">{{submited_shared_options +  '/' + max_shared_options}}</h3>
+        </div>
+        <div cdkDropList #options="cdkDropList" id="opts" [cdkDropListConnectedTo]="questions" class="card-list"
+          fxLayout="column" fxLayoutAlign="start center">
+          <app-relationship-option class="card-component" *ngFor="let number of optionCounter()" cdkDrag>
+          </app-relationship-option>
+        </div>
+      </div>
+    </mat-card>
+  </div>
 </div>
-<app-image-focus *ngIf="imageContent" [image]="imageContent" (close)="imageContent = null"></app-image-focus>
+<app-image-focus *ngIf="focusedImage" [image]="focusedImage" (close)="focusedImage = null"></app-image-focus>
+<ng-template #errorView>
+  <div class="principal-container max-width-container" fxLayout="column" fxLayoutAlign="center center">
+    <div class="error-image">
+      <img src="{{error.image || GENERIC_ERROR_EMPTY_STATE}}">
+    </div>
+    <div class="error-text">
+      <h3>{{error.status}}</h3>
+    </div>
+  </div>
+</ng-template>

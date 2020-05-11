@@ -17,9 +17,21 @@ export class AuthService {
     this._url = environment.BASEURL;
   }
 
+  callSignUpService(signUpRequest: any): Promise<HandledResponse> {
+    const requestHeaders = { 'auth-flow': 'true' };
+
+    return this.http.post<HandledResponse>(`${this._url}/authentication/v1/signup`, signUpRequest, { headers: requestHeaders }).toPromise()
+      .catch((err) => {
+        if (err.error.status) {
+          throw err.error as HandledResponse;
+        } else {
+          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
+        }
+      });
+  }
 
   callLoginService(authRequest: AuthRequest): Promise<void> {
-    const requestHeaders = { 'login-flow': 'true' };
+    const requestHeaders = { 'auth-flow': 'true' };
 
     return this.http.post<AuthResponse>(`${this._url}/authentication/v1/login`, authRequest, { headers: requestHeaders })
       .toPromise().then((authResponse: AuthResponse) => {
@@ -39,6 +51,22 @@ export class AuthService {
       .then(() => {
         this.storage.clear();
       }).catch((err) => {
+        if (err.error.status) {
+          throw err.error as HandledResponse;
+        } else {
+          throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
+        }
+      });
+  }
+
+
+  callRefreshToken(): Promise<void> {
+    return this.http.get(`${this._url}/authentication/v1/refresh`).toPromise()
+      .then((response: any) => {
+        this.storage.store(BEARER_KEY, response.bearer);
+        return;
+      }).catch((err) => {
+        this.storage.clear();
         if (err.error.status) {
           throw err.error as HandledResponse;
         } else {

@@ -1,3 +1,4 @@
+import { Photo } from './../../models/api.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ImageFocusComponent implements OnInit {
 
-  @Input() image: string;
+  @Input() image: Photo;
   @Output() close: EventEmitter<void>;
   constructor() {
     this.close = new EventEmitter();

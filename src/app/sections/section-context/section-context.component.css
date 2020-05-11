@@ -25,18 +25,12 @@
   height: 36pt;
 }
 
-.upload-button {
-  width: 200px;
-  height: 150px;
-}
-
 .image-container {
   position: absolute;
   width: 25%;
   height: 25%;
   top: 25%;
   right: 2%;
-  cursor: pointer;
 }
 
 .context-image {
@@ -44,7 +38,37 @@
   height: 100%;
   position: absolute;
   border: 1px solid rgb(17, 21, 59);
+  cursor: pointer;
 }
+
+
+.example-container {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  bottom: 25%;
+  right: 2%;
+}
+
+
+.example-btn {
+  width: 200px;
+  border: 1px solid rgb(230, 94, 94);
+}
+
+.example-active {
+  border: 1px solid rgb(124, 211, 124);
+}
+
+::ng-deep .successfull-snackbar .mat-simple-snackbar-action {
+  background: rgb(250, 251, 252);
+  color: rgb(39, 163, 35);
+}
+
+::ng-deep .error-snackbar .mat-simple-snackbar-action {
+  color: rgb(226, 93, 93);
+}
+
 
 :host ::ng-deep .mat-focused .mat-form-field-ripple {
   background-color: rgb(28, 120, 196);

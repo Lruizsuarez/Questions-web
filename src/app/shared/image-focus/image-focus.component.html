@@ -3,5 +3,5 @@
   <div class="close-btn" (click)="performClose()">
     <img matTooltip="close" class="close-icon" src="https://img.icons8.com/plasticine/100/000000/close-window.png"/>
   </div>
-  <img class="focused-image" src="{{image}}">
+  <img class="focused-image" src="{{'data:' + image.content_type + ';base64,' +  image.content}}">
 </div>

@@ -32,6 +32,7 @@ export class FileUploadComponent implements OnInit {
     };
 
     this.reader.onloadend = () => {
+      this.processedFile.content = this.processedFile.content.split(',')[1];
       this.fileTransformed.emit(this.processedFile);
     };
   }

@@ -61,7 +61,7 @@ export interface Section {
   title: string;
   type: number;
   context: string;
-  image?: string;
+  image?: Photo;
   example?: Question | string;
   questions: Question[] | string;
   sharedOptions?: Option[] | string;
