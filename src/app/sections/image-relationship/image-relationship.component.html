@@ -27,20 +27,21 @@
           <h2 class="half-container principal-title"> QUESTIONS </h2>
           <h3 class="half-container centered-align">{{submited_questions +  '/' + max_questions}}</h3>
         </div>
-        <div cdkDropList #questions="cdkDropList" id="questions" [cdkDropListConnectedTo]="options"
-          (cdkDropListDropped)="makeRelation($event)" class="card-list" fxLayout="column" fxLayoutAlign="start center">
-          <app-relationship-question *ngFor="let number of questionCounter()" class="card-component">
+        <div class="card-list" fxLayout="column" fxLayoutAlign="start center">
+          <app-relationship-question *ngFor="let question of questions" class="card-component">
           </app-relationship-question>
         </div>
       </div>
       <div class="half-container" fxLayout="column" fxLayoutAlign="start center">
         <div class="title" fxLayout="row">
           <h2 class="half-container principal-title"> OPTIONS </h2>
-          <h3 class="half-container centered-align">{{submited_shared_options +  '/' + max_shared_options}}</h3>
+          <h3 class="half-container centered-align">
+            {{submited_shared_options +  '/' + max_sharedOptions}}</h3>
         </div>
-        <div cdkDropList #options="cdkDropList" id="opts" [cdkDropListConnectedTo]="questions" class="card-list"
-          fxLayout="column" fxLayoutAlign="start center">
-          <app-relationship-option class="card-component" *ngFor="let number of optionCounter()" cdkDrag>
+        <div class="card-list" fxLayout="column" fxLayoutAlign="start center">
+          <app-relationship-option *ngFor="let option of sharedOptions" class="card-component" [data]="option"
+            [creationFlow]="!option" [requiredImage]="true" [sectionId]="sid"
+            (focusedImage)="handleContextImageClick($event)">
           </app-relationship-option>
         </div>
       </div>

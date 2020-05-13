@@ -13,7 +13,7 @@ export class ReadingComprehensionComponent extends SectionParent implements OnIn
   SECTION_TYPE = 4;
 
   constructor(protected flow: SectionCreationService, protected activatedRoute: ActivatedRoute) {
-    super(flow, activatedRoute);
+    super(flow, activatedRoute, 7, 0);
   }
 
   ngOnInit() {

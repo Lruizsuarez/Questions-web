@@ -13,7 +13,7 @@ export class MultipleSelectionComponent extends SectionParent implements OnInit 
   SECTION_TYPE = 5;
 
   constructor(protected flow: SectionCreationService, protected activatedRoute: ActivatedRoute) {
-    super(flow, activatedRoute);
+    super(flow, activatedRoute, 5, 0);
   }
 
   ngOnInit() {

@@ -13,7 +13,7 @@ export class VocabularyIndentificationComponent extends SectionParent implements
   SECTION_TYPE = 2;
 
   constructor(protected flow: SectionCreationService, protected activatedRoute: ActivatedRoute) {
-    super(flow, activatedRoute);
+    super(flow, activatedRoute, 5, 0);
   }
 
   ngOnInit() {

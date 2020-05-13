@@ -24,8 +24,8 @@ export class SectionsService {
       .pipe(
         map((data: Data<Section>) => data.data),
         catchError((err: any) => {
-          if (err.status) {
-            throw err as HandledResponse;
+          if (err.error.status) {
+            throw err.error as HandledResponse;
           } else {
             throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
           }
@@ -36,8 +36,8 @@ export class SectionsService {
   postSection(request: any, courseId: string): Observable<HandledResponse> {
     return this.http.post<HandledResponse>(`${this._url}/api/section/v1/${courseId}/create`, request)
       .pipe(catchError((err: any) => {
-        if (err.status) {
-          throw err as HandledResponse;
+        if (err.error.status) {
+          throw err.error as HandledResponse;
         } else {
           throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }
@@ -48,8 +48,8 @@ export class SectionsService {
   updateSection(request: any, sectionId: string): Observable<HandledResponse> {
     return this.http.put<HandledResponse>(`${this._url}/api/section/v1/${sectionId}/update`, request)
       .pipe(catchError((err: any) => {
-        if (err.status) {
-          throw err as HandledResponse;
+        if (err.error.status) {
+          throw err.error as HandledResponse;
         } else {
           throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }
@@ -60,8 +60,8 @@ export class SectionsService {
   deleteSection(sectionId: string): Observable<HandledResponse> {
     return this.http.delete<HandledResponse>(`${this._url}/api/section/v1/${sectionId}/delete`)
       .pipe(catchError((err: any) => {
-        if (err.status) {
-          throw err as HandledResponse;
+        if (err.error.status) {
+          throw err.error as HandledResponse;
         } else {
           throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }
@@ -72,8 +72,8 @@ export class SectionsService {
   patchSharedOption(sectionId: string, optionId: string): Observable<HandledResponse> {
     return this.http.patch<HandledResponse>(`${this._url}/api/section/v1/${sectionId}/shared/${optionId}`, {})
       .pipe(catchError((err: any) => {
-        if (err.status) {
-          throw err as HandledResponse;
+        if (err.error.status) {
+          throw err.error as HandledResponse;
         } else {
           throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }
@@ -84,8 +84,8 @@ export class SectionsService {
   patchQuestion(sectionId: string, questionId: string): Observable<HandledResponse> {
     return this.http.patch<HandledResponse>(`${this._url}/api/section/v1/${sectionId}/question/${questionId}`, {})
       .pipe(catchError((err: any) => {
-        if (err.status) {
-          throw err as HandledResponse;
+        if (err.error.status) {
+          throw err.error as HandledResponse;
         } else {
           throw { code: 500, status: UNHANDLED_ERROR_TEXT } as HandledResponse;
         }

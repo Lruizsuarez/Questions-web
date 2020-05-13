@@ -81,7 +81,7 @@ export interface Option {
   _id: string;
   section?: Section | string;
   question?: Question | string;
-  image?: string;
+  image?: Photo;
   text: string;
   answer?: boolean;
 }

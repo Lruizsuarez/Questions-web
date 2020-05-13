@@ -11,8 +11,6 @@ import SectionParent from '../parent/section-parent';
 export class ImageRelationshipComponent extends SectionParent implements OnInit {
 
   SECTION_TYPE = 1;
-  max_questions = 5;
-  max_shared_options = 8;
 
 
   submited_questions = 0;
@@ -21,24 +19,11 @@ export class ImageRelationshipComponent extends SectionParent implements OnInit 
   constructor(protected activatedRoute: ActivatedRoute,
     private router: Router,
     protected flow: SectionCreationService) {
-    super(flow, activatedRoute);
+    super(flow, activatedRoute , 5 , 8);
   }
 
   ngOnInit() {
     super.ngOnInit();
-  }
-
-
-  questionCounter() {
-    return Array(this.max_questions);
-  }
-
-  optionCounter() {
-    return Array(this.max_shared_options);
-  }
-
-  makeRelation(event: any) {
-    console.log('drop event : ', event);
   }
 
 }

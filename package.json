@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "6.1.10",
-    "@angular/cdk": "^7.0.3",
+    "@angular/cdk": "^7.3.7",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
     "@angular/core": "~7.0.0",
@@ -33,7 +33,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.10.0",
+    "@angular-devkit/build-angular": "^0.13.0",
     "@angular/cli": "~7.0.7",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
@@ -53,8 +53,10 @@
   },
   "jest": {
     "preset": "jest-preset-angular",
-    "collectCoverage":true,
-    "coverageDirectory":"dist/test-coverage",
-    "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"]
+    "collectCoverage": true,
+    "coverageDirectory": "dist/test-coverage",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-jest.ts"
+    ]
   }
 }

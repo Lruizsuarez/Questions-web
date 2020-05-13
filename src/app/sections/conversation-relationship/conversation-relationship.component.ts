@@ -13,7 +13,7 @@ export class ConversationRelationshipComponent extends SectionParent implements 
   SECTION_TYPE = 3;
 
   constructor(protected flow: SectionCreationService, activatedRoute: ActivatedRoute) {
-    super(flow, activatedRoute);
+    super(flow, activatedRoute, 5, 8);
   }
 
   ngOnInit() {

@@ -1,9 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
 import { SectionCreationService } from './../../services/section-creation/section-creation.service';
-import { Photo, Section, HandledResponse } from './../../models/api.model';
+import { Photo, Section, HandledResponse, Question, Option } from './../../models/api.model';
 import { OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 export default class SectionParent implements OnInit {
 
@@ -13,12 +13,18 @@ export default class SectionParent implements OnInit {
   protected sid: string;
   protected focusedImage: Photo;
   protected $data: Observable<Section | any>;
+  protected questions: Question[];
+  protected sharedOptions: Option[];
   protected error: HandledResponse;
 
 
-  constructor(protected flowStore: SectionCreationService, protected route: ActivatedRoute) {
+
+  constructor(protected flowStore: SectionCreationService, protected route: ActivatedRoute,
+    protected max_questions: number, protected max_sharedOptions: number) {
     this.cid = route.snapshot.queryParams.cid;
     this.sid = flowStore.getSID();
+    this.questions = Array(this.max_questions);
+    this.sharedOptions = Array(this.max_sharedOptions);
   }
 
 
@@ -26,8 +32,12 @@ export default class SectionParent implements OnInit {
     if (this.sid) {
       this.$data = this.flowStore.getCurrentSection()
         .pipe(
-          catchError((err: any) => {
-            this.error = err.error;
+          tap((section: Section) => {
+            this.questions = (section.questions as Question[]).concat(Array(this.max_questions - section.questions.length));
+            this.sharedOptions = (section.sharedOptions as Option[]).concat(Array(this.max_sharedOptions - section.sharedOptions.length));
+          }),
+          catchError((err: HandledResponse) => {
+            this.error = err;
             return of();
           })
         );
@@ -41,10 +51,10 @@ export default class SectionParent implements OnInit {
 
   handlePerformedCreation(sid: string) {
     this.flowStore.saveSID(sid);
+    this.sid = sid;
   }
 
   clearSID() {
-    console.log('holaaaaaa');
     this.flowStore.clearSID();
   }
 }
