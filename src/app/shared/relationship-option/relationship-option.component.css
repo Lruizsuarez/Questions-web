@@ -29,6 +29,12 @@
 }
 
 
+.btn-active {
+  width: 200px;
+  border: 1px solid rgb(124, 211, 124);
+}
+
+
 :host ::ng-deep .mat-focused .mat-form-field-ripple {
   background-color: rgb(28, 120, 196);
 }

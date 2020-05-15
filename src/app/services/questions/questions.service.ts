@@ -77,7 +77,7 @@ export class QuestionsService implements OnInit {
   }
 
   updateOption(request: any, optionId: string): Observable<HandledResponse> {
-    return this.http.put<HandledResponse>(`${this._url}/api/question/v1/${optionId}/update`, request)
+    return this.http.put<HandledResponse>(`${this._url}/api/question/v1/option/${optionId}/update`, request)
       .pipe(catchError((err: any) => {
         if (err.error.status) {
           throw err.error as HandledResponse;

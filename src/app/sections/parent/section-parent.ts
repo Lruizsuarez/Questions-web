@@ -17,6 +17,8 @@ export default class SectionParent implements OnInit {
   protected sharedOptions: Option[];
   protected error: HandledResponse;
 
+  submited_questions = 0;
+  submited_shared_options = 0;
 
 
   constructor(protected flowStore: SectionCreationService, protected route: ActivatedRoute,
@@ -33,6 +35,8 @@ export default class SectionParent implements OnInit {
       this.$data = this.flowStore.getCurrentSection()
         .pipe(
           tap((section: Section) => {
+            this.submited_questions = section.questions.length;
+            this.submited_shared_options = section.sharedOptions.length;
             this.questions = (section.questions as Question[]).concat(Array(this.max_questions - section.questions.length));
             this.sharedOptions = (section.sharedOptions as Option[]).concat(Array(this.max_sharedOptions - section.sharedOptions.length));
           }),
@@ -56,5 +60,21 @@ export default class SectionParent implements OnInit {
 
   clearSID() {
     this.flowStore.clearSID();
+  }
+
+  handleSharedOptionCreation(request: Option) {
+    return this.flowStore.addSharedOption(request);
+  }
+
+  handleSharedOptionUpdate(request: Option) {
+    return this.flowStore.updateSharedOption(request);
+  }
+
+  updateOptionIndex(index: number, data: Option) {
+    this.sharedOptions[index] = data;
+  }
+
+  updateQuestionIndex(index: number, data: Question) {
+    this.questions[index] = data;
   }
 }

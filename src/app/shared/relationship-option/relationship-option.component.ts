@@ -1,7 +1,4 @@
-import { SIMPLE_ACTION_TEXT } from './../../utils/constants';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { QuestionsService } from './../../services/questions/questions.service';
-import { Option, Photo, HandledResponse } from './../../models/api.model';
+import { Option, Photo } from './../../models/api.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -11,29 +8,37 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class RelationshipOptionComponent implements OnInit {
 
-  @Input() sectionId: string;
   @Input() data: Option;
-  @Input() requiredImage: boolean;
   @Input() creationFlow: boolean;
 
   @Output() focusedImage: EventEmitter<Photo>;
+  @Output() created: EventEmitter<Option>;
+  @Output() edited: EventEmitter<Option>;
+  @Output() error: EventEmitter<String>;
 
   hasData = true;
+  isEditing = false;
 
-  constructor(private options: QuestionsService, private snackBar: MatSnackBar) {
+  constructor() {
     this.focusedImage = new EventEmitter();
+    this.created = new EventEmitter();
+    this.edited = new EventEmitter();
+    this.error = new EventEmitter();
   }
 
   ngOnInit() {
     if (!this.data) {
       this.hasData = false;
+      this.isEditing = true;
       this.data = { _id: '', text: '' };
     }
   }
 
   saveImage(data: Photo) {
     this.data.image = data;
-    this.hasData = !this.hasData;
+    if (!this.isEditing) {
+      this.isEditing = !this.isEditing;
+    }
   }
 
   focusImage() {
@@ -41,24 +46,21 @@ export class RelationshipOptionComponent implements OnInit {
   }
 
   editOption() {
-
+    if (this.data.text.length === 0) {
+      this.error.emit('please put valid values');
+      return;
+    }
+    this.edited.emit(this.data);
+    this.isEditing = false;
   }
 
   saveOption() {
-    this.options.postSharedOption(this.data, this.sectionId).subscribe((response: HandledResponse) => {
-      this.showSuccessfullSnackBar(response.status);
-      this.creationFlow = false;
-    }, (err: HandledResponse) => {
-      this.showErrorSnackBar(err.status);
-    });
-  }
-
-  showSuccessfullSnackBar(text: string) {
-    this.snackBar.open(text, null, { duration: 3000, panelClass: ['successfull-snackbar'] });
-  }
-
-  showErrorSnackBar(text: string) {
-    this.snackBar.open(text, SIMPLE_ACTION_TEXT, { duration: 5000, panelClass: ['error-snackbar'] });
+    if (this.data.text.length === 0) {
+      this.error.emit('please put valid values');
+      return;
+    }
+    this.created.emit(this.data);
+    this.isEditing = false;
   }
 
 }

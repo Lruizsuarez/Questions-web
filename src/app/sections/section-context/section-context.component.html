@@ -32,17 +32,20 @@
     </mat-form-field>
   </form>
   <div class="image-container" fxLayout="row" fxLayoutAlign="flex-end">
-    <img *ngIf="image; else uploadButton" class="context-image"
-      src="{{'data:' + image.content_type + ';base64,' +  image.content}}" (click)="focusImage()">
+    <div *ngIf="image; else uploadButton" xLayout="column" fxLayoutAlign="center center">
+      <button mat-button class=" btn btn-active" (click)="focusImage()">
+        🤓 VIEW IMAGE
+      </button>
+    </div>
     <ng-template #uploadButton>
       <app-file-upload [text]="'UPLOAD'" [icon]="'https://img.icons8.com/cotton/64/000000/upload.png'"
         [type]="'image/**'" (fileTransformed)="saveImage($event)">
       </app-file-upload>
     </ng-template>
   </div>
-  <div class="example-container" fxLayout="row" fxLayoutAlign="flex-end">
-    <div class="example-btn-container" fxLayout="column" fxLayoutAlign="center center">
-      <button mat-button class="example-btn" (click)="navigateToExample()" [ngClass]="example? 'example-active': ''">
+  <div class="btn-container" fxLayout="row" fxLayoutAlign="flex-end">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <button mat-button class="btn" (click)="navigateToExample()" [ngClass]="example? 'btn-active': ''">
         {{example? '🙉 VIEW EXAMPLE': '❓ CREATE AN EXAMPLE'}}
       </button>
     </div>

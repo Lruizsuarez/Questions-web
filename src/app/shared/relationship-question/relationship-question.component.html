@@ -1,3 +1,6 @@
-<mat-card class="principal-container max-width-container bordered">
-  <mat-card-title> example question </mat-card-title>
+<mat-card class="principal-container max-width-container bordered" fxLayout="column" fxLayoutAlign="start center">
+  <mat-form-field class="input-value">
+    <input #questionText matInput placeholder="option text ..." value="{{hasData?  data.question : ''}}"
+      autocomplete="off" (input)="data.question = questionText.value" [disabled]="!isEditing">
+  </mat-form-field>
 </mat-card>

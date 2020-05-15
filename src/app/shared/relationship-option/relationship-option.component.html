@@ -1,21 +1,21 @@
 <mat-card class="principal-container max-width-container bordered" fxLayout="column" fxLayoutAlign="start center">
   <mat-form-field class="input-value">
     <input #optionText matInput placeholder="option text ..." value="{{hasData?  data.text : ''}}" autocomplete="off"
-      (input)="data.text = optionText.value" [disabled]="!creationFlow">
+      (input)="data.text = optionText.value" [disabled]="!isEditing">
   </mat-form-field>
-  <img *ngIf="hasData; else uploadButton" class="context-image"
-    src="{{'data:' + data.image.content_type + ';base64,' +  data.image.content}}" (click)="focusImage()">
-  <ng-template #uploadButton>
-    <app-file-upload class="upload-btn" [text]="'ADD AN IMAGE'"
-      [icon]="'https://img.icons8.com/cotton/64/000000/upload.png'" [type]="'image/**'"
-      (fileTransformed)="saveImage($event)">
-    </app-file-upload>
-  </ng-template>
-  <button *ngIf="hasData && !creationFlow" (click)="editOption()" class="side-corner-button" mat-raised-button
-    matTooltip="edit option">
+  <button *ngIf="data.image" mat-button class="btn-active" (click)="focusImage()">
+    🤓 VIEW IMAGE
+  </button>
+  <app-file-upload *ngIf="!data.image" [text]="'ADD AN IMAGE'"
+    [icon]="'https://img.icons8.com/cotton/64/000000/upload.png'" [type]="'image/**'"
+    (fileTransformed)="saveImage($event)">
+  </app-file-upload>
+  <button *ngIf="hasData && !creationFlow && !isEditing" (click)="isEditing = !isEditing" class="side-corner-button"
+    mat-raised-button matTooltip="edit option">
     <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
   </button>
-  <button *ngIf="!hasData || creationFlow" (click)="saveOption()" class="side-corner-button" mat-raised-button matTooltip="save option">
+  <button *ngIf="!hasData || creationFlow || isEditing" (click)="isEditing && !hasData? saveOption() : editOption()"
+    class="side-corner-button" mat-raised-button matTooltip="save option">
     <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
   </button>
 </mat-card>

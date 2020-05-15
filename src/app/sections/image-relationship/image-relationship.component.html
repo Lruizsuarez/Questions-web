@@ -39,9 +39,10 @@
             {{submited_shared_options +  '/' + max_sharedOptions}}</h3>
         </div>
         <div class="card-list" fxLayout="column" fxLayoutAlign="start center">
-          <app-relationship-option *ngFor="let option of sharedOptions" class="card-component" [data]="option"
-            [creationFlow]="!option" [requiredImage]="true" [sectionId]="sid"
-            (focusedImage)="handleContextImageClick($event)">
+          <app-relationship-option id="i" *ngFor="let option of sharedOptions ; let i = index" class="card-component"
+            [data]="option" [creationFlow]="!option"
+            (focusedImage)="handleContextImageClick($event)" (created)="createSharedOption($event , i)"
+            (edited)="updateSharedOption($event , i)" (error)="showErrorSnackBar($event)">
           </app-relationship-option>
         </div>
       </div>

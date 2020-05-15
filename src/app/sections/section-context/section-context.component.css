@@ -42,7 +42,7 @@
 }
 
 
-.example-container {
+.btn-container {
   position: absolute;
   width: 25%;
   height: 25%;
@@ -51,12 +51,12 @@
 }
 
 
-.example-btn {
+.btn {
   width: 200px;
   border: 1px solid rgb(230, 94, 94);
 }
 
-.example-active {
+.btn-active {
   border: 1px solid rgb(124, 211, 124);
 }
 
