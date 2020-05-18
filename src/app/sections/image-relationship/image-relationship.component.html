@@ -28,7 +28,10 @@
           <h3 class="half-container centered-align">{{submited_questions +  '/' + max_questions}}</h3>
         </div>
         <div class="card-list" fxLayout="column" fxLayoutAlign="start center">
-          <app-relationship-question *ngFor="let question of questions" class="card-component">
+          <app-relationship-question *ngFor="let question of questions; let i = index" class="card-component"
+            [data]="question" [creationFlow]="!question" (created)="createQuestion($event , i)"
+            (edited)="updateQuestion($event , i)" (error)="showErrorSnackBar($event)"
+            (answerSelection)="changeCurrRelationshipQuestion($event , i)">
           </app-relationship-question>
         </div>
       </div>
@@ -39,10 +42,11 @@
             {{submited_shared_options +  '/' + max_sharedOptions}}</h3>
         </div>
         <div class="card-list" fxLayout="column" fxLayoutAlign="start center">
-          <app-relationship-option id="i" *ngFor="let option of sharedOptions ; let i = index" class="card-component"
-            [data]="option" [creationFlow]="!option"
+          <app-relationship-option *ngFor="let option of sharedOptions ; let i = index" class="card-component"
+            [data]="option" [creationFlow]="!option" [index]="i" [showIndex]="showIndex"
             (focusedImage)="handleContextImageClick($event)" (created)="createSharedOption($event , i)"
-            (edited)="updateSharedOption($event , i)" (error)="showErrorSnackBar($event)">
+            (edited)="updateSharedOption($event , i)" (error)="showErrorSnackBar($event)"
+            (selectedOption)="makeRelationAndSave($event)">
           </app-relationship-option>
         </div>
       </div>

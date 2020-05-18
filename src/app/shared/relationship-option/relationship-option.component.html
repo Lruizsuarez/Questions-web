@@ -1,4 +1,8 @@
 <mat-card class="principal-container max-width-container bordered" fxLayout="column" fxLayoutAlign="start center">
+  <button [disabled]="!showIndex" [ngClass]="showIndex? 'bordered-btn' : ''" (click)="optionSelected()"
+    class="index-corner-button" mat-button matTooltip="{{showIndex? 'save answer' : ''}}">
+    <img class="index-icon" src="{{'./../../../assets/img/number-' + (index+1) + '.png'}}" />
+  </button>
   <mat-form-field class="input-value">
     <input #optionText matInput placeholder="option text ..." value="{{hasData?  data.text : ''}}" autocomplete="off"
       (input)="data.text = optionText.value" [disabled]="!isEditing">

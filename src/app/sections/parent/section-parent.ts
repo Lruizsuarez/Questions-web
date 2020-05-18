@@ -35,6 +35,7 @@ export default class SectionParent implements OnInit {
       this.$data = this.flowStore.getCurrentSection()
         .pipe(
           tap((section: Section) => {
+            console.log('response : ', section);
             this.submited_questions = section.questions.length;
             this.submited_shared_options = section.sharedOptions.length;
             this.questions = (section.questions as Question[]).concat(Array(this.max_questions - section.questions.length));
@@ -71,7 +72,17 @@ export default class SectionParent implements OnInit {
   }
 
   updateOptionIndex(index: number, data: Option) {
+    console.log('option : ', data);
+    console.log('index : ', index);
     this.sharedOptions[index] = data;
+  }
+
+  handleQuestionCreation(request: Question) {
+    return this.flowStore.addQuestion(request);
+  }
+
+  handleQuestionUpdate(request: Question) {
+    return this.flowStore.updateQuestion(request);
   }
 
   updateQuestionIndex(index: number, data: Question) {

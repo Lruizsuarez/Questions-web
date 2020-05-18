@@ -82,7 +82,7 @@ export interface Option {
   section?: Section | string;
   question?: Question | string;
   image?: Photo;
-  text: string;
+  text?: string;
   answer?: boolean;
 }
 

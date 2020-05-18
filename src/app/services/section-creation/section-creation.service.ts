@@ -1,9 +1,9 @@
 import { QuestionsService } from './../questions/questions.service';
-import { Option, HandledResponse, Section } from './../../models/api.model';
+import { Option, HandledResponse, Section, Question } from './../../models/api.model';
 import { SessionStorageService } from './../storage/session.storage.service';
 import { SectionsService } from './../sections/sections.service';
 import { Injectable } from '@angular/core';
-import { tap, map, flatMap } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -41,10 +41,16 @@ export class SectionCreationService {
   }
 
   addSharedOption(option: Option): Observable<HandledResponse> {
+    let resultId = '';
     return this.questions.postSharedOption(option, this.currentId).pipe(
-      map((response: HandledResponse) => response.additional_information.result_id),
-      map((id: string) => this.section.patchSharedOption(this.currentId, id)),
-      flatMap((value: Observable<HandledResponse>) => value)
+      map((response: HandledResponse) => {
+        resultId = response.additional_information.result_id;
+        return this.section.patchSharedOption(this.currentId, resultId);
+      }),
+      flatMap((value: Observable<HandledResponse>) => value.pipe(map((response: HandledResponse) => {
+        response.additional_information.result_id = resultId;
+        return response;
+      })))
     );
   }
 
@@ -52,7 +58,22 @@ export class SectionCreationService {
     return this.questions.updateOption(option, option._id);
   }
 
-  addSectionQuestion(questionId: string): Observable<HandledResponse> {
-    return this.section.patchQuestion(this.currentId, questionId);
+  addQuestion(question: Question): Observable<HandledResponse> {
+    let resultId = '';
+    return this.questions.postQuestion(question, this.currentId).pipe(
+      map((response: HandledResponse) => {
+        resultId = response.additional_information.result_id;
+        return this.section.patchQuestion(this.currentId, resultId);
+      }),
+      flatMap((value: Observable<HandledResponse>) => value.pipe(map((response: HandledResponse) => {
+        response.additional_information.result_id = resultId;
+        return response;
+      }))
+      ));
   }
+
+  updateQuestion(question: Question): Observable<HandledResponse> {
+    return this.questions.updateQuestion(question, question._id);
+  }
+
 }

@@ -10,3 +10,23 @@
 .input-value {
   width: 80%;
 }
+
+.side-corner-button {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+.sample-icon {
+  width: 24pt;
+  height: 24pt;
+}
+
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(124, 211, 124);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(124, 211, 124);
+}
