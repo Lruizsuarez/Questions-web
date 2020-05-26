@@ -11,7 +11,12 @@
     matTooltip="save question" (click)="isEditing && !hasData? saveQuestion() : editQuestion()">
     <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
   </button>
-  <button mat-raised-button mat-raised-button (click)="selectAnswer()">
-    ✅ ADD ANSWER
-  </button>
+  <div class="buttons-container" fxLayout="row" fxLayoutAlign="space-around">
+    <button mat-raised-button mat-raised-button (click)="selectAnswer()">
+      {{ data.answer? '❓ CHANGE ANSWER' : '✅ ADD ANSWER'}}
+    </button>
+    <button *ngIf="data.answer" mat-raised-button mat-raised-button (click)="focusAnswer()">
+      ⚡VIEW ANSWER
+    </button>
+  </div>
 </mat-card>

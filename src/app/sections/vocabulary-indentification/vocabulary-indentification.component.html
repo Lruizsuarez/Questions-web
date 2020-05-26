@@ -1,5 +1,5 @@
-<div *ngIf="!error ;else errorView" class="principal-container max-width-container" fxLayout="row"
-  fxLayoutAlign="center start">
+<div *ngIf="!error ;else errorView" class="principal-container max-width-container" fxLayout="column"
+  fxLayoutAlign="start center">
   <div class="context-container" *ngIf="$data ;else creationflow">
     <div class="context-wrapper" *ngIf="$data | async as section ;else loading">
       <app-section-context class="context-container no-margin" [contextMaxLength]="500" [courseId]="cid"
@@ -20,6 +20,19 @@
       (performedCreation)="handlePerformedCreation($event)">
     </app-section-context>
   </ng-template>
+  <div class="content-container">
+    <mat-card class="principal-container max-width-container content">
+      <div class="titles">
+        <mat-card-title class="bold-text title"> QUESTIONS </mat-card-title>
+        <div class="counter">
+          <p class="numeric-text bold-text"> {{submited_questions + '/' + max_questions}}</p>
+        </div>
+      </div>
+      <app-multiple-selection-list class="questions-list" [data]="questions" [whiteFields]="true"
+        [options]="max_options">
+      </app-multiple-selection-list>
+    </mat-card>
+  </div>
 </div>
 <app-image-focus *ngIf="focusedImage" [image]="focusedImage" (close)="focusedImage = null"></app-image-focus>
 <ng-template #errorView>

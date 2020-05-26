@@ -1,7 +1,7 @@
 import { SIMPLE_ACTION_TEXT } from './../../utils/constants';
 import { HandledResponse, Question } from './../../models/api.model';
 import { SectionCreationService } from './../../services/section-creation/section-creation.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import SectionParent from '../parent/section-parent';
 import { Option } from 'src/app/models/api.model';
@@ -20,9 +20,10 @@ export class ImageRelationshipComponent extends SectionParent implements OnInit 
   private currentQuestion: Question;
   private currentIdx: number;
 
+  currentFocused: string;
+
 
   constructor(protected activatedRoute: ActivatedRoute,
-    private router: Router,
     protected flow: SectionCreationService,
     private snackBar: MatSnackBar) {
     super(flow, activatedRoute, 5, 8);
@@ -43,7 +44,12 @@ export class ImageRelationshipComponent extends SectionParent implements OnInit 
   makeRelationAndSave(data: Option) {
     const opts = [{ _id: data._id, answer: true }];
     this.currentQuestion.options = opts;
-    this.createQuestion(this.currentQuestion, this.currentIdx);
+
+    if (this.currentQuestion._id) {
+      this.updateQuestion(this.currentQuestion, this.currentIdx);
+    } else {
+      this.createQuestion(this.currentQuestion, this.currentIdx);
+    }
   }
 
   createSharedOption(request: Option, index: number) {
@@ -73,6 +79,7 @@ export class ImageRelationshipComponent extends SectionParent implements OnInit 
       this.submited_questions += 1;
       this.showIndex = false;
       this.showSuccessfullSnackBar(response.status);
+      this.fetchData();
     }, (err: HandledResponse) => {
       this.showErrorSnackBar(err.status);
     });
@@ -82,9 +89,27 @@ export class ImageRelationshipComponent extends SectionParent implements OnInit 
     this.handleQuestionUpdate(request).subscribe((response: HandledResponse) => {
       this.updateQuestionIndex(index, request);
       this.showSuccessfullSnackBar(response.status);
+      this.fetchData();
     }, (err: HandledResponse) => {
       this.showErrorSnackBar(err.status);
     });
+  }
+
+  setAnswerFocused(id: string) {
+    this.currentFocused = id;
+    const element = document.getElementById(`item-${id}`);
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  needFocus(id: string) {
+    if (!this.currentFocused) {
+      return false;
+    } else {
+      return id === this.currentFocused;
+    }
   }
 
   showSuccessfullSnackBar(text: string) {

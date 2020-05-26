@@ -31,7 +31,7 @@
           <app-relationship-question *ngFor="let question of questions; let i = index" class="card-component"
             [data]="question" [creationFlow]="!question" (created)="createQuestion($event , i)"
             (edited)="updateQuestion($event , i)" (error)="showErrorSnackBar($event)"
-            (answerSelection)="changeCurrRelationshipQuestion($event , i)">
+            (answerSelection)="changeCurrRelationshipQuestion($event , i)" (answerFocus)="setAnswerFocused($event)">
           </app-relationship-question>
         </div>
       </div>
@@ -41,12 +41,13 @@
           <h3 class="half-container centered-align">
             {{submited_shared_options +  '/' + max_sharedOptions}}</h3>
         </div>
-        <div class="card-list" fxLayout="column" fxLayoutAlign="start center">
-          <app-relationship-option *ngFor="let option of sharedOptions ; let i = index" class="card-component"
-            [data]="option" [creationFlow]="!option" [index]="i" [showIndex]="showIndex"
-            (focusedImage)="handleContextImageClick($event)" (created)="createSharedOption($event , i)"
-            (edited)="updateSharedOption($event , i)" (error)="showErrorSnackBar($event)"
-            (selectedOption)="makeRelationAndSave($event)">
+        <div id="options-list" class="card-list" fxLayout="column" fxLayoutAlign="start center">
+          <app-relationship-option id="{{'item-' + option._id}}" *ngFor="let option of sharedOptions ; let i = index"
+            class="card-component" [data]="option" [creationFlow]="!option" [index]="i" [showIndex]="showIndex"
+            [imageChooser]="true" [focus]="needFocus(option._id)" (focusedImage)="handleContextImageClick($event)"
+            (created)="createSharedOption($event , i)" (edited)="updateSharedOption($event , i)"
+            (error)="showErrorSnackBar($event)" (selectedOption)="makeRelationAndSave($event)"
+            [ngClass]="needFocus(option._id)? 'focused-option' : ''">
           </app-relationship-option>
         </div>
       </div>

@@ -12,6 +12,8 @@ export class RelationshipOptionComponent implements OnInit {
   @Input() creationFlow: boolean;
   @Input() index: number;
   @Input() showIndex: boolean;
+  @Input() focus: boolean;
+  @Input() imageChooser: boolean;
 
   @Output() focusedImage: EventEmitter<Photo>;
   @Output() created: EventEmitter<Option>;
@@ -31,11 +33,10 @@ export class RelationshipOptionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('index : ', this.index);
-    if (!this.data) {
+    if (!this.data._id) {
       this.hasData = false;
       this.isEditing = true;
-      this.data = { _id: '', text: '' };
+      this.data = { _id: '', text: '', image: null };
     }
   }
 
@@ -74,7 +75,9 @@ export class RelationshipOptionComponent implements OnInit {
     }
     this.data.answer = true;
     this.created.emit(this.data);
+    this.creationFlow = false;
     this.isEditing = false;
+    this.hasData = true;
   }
 
 }

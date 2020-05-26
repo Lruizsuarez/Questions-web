@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class VocabularyIndentificationComponent extends SectionParent implements OnInit {
 
   SECTION_TYPE = 2;
+  max_options = 3;
 
   constructor(protected flow: SectionCreationService, protected activatedRoute: ActivatedRoute) {
     super(flow, activatedRoute, 5, 0);

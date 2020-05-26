@@ -59,6 +59,11 @@
   width: 100%;
   height: 100%;
   margin: 5%;
+  transition: 0.4s;
+}
+
+.focused-option {
+  transform: scale(1.1, 1.1);
 }
 
 .error-image>img {

@@ -1,4 +1,4 @@
-import { Question } from './../../models/api.model';
+import { Question, Option } from './../../models/api.model';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -15,6 +15,7 @@ export class RelationshipQuestionComponent implements OnInit {
   @Output() edited: EventEmitter<Question>;
   @Output() error: EventEmitter<String>;
   @Output() answerSelection: EventEmitter<Question>;
+  @Output() answerFocus: EventEmitter<String>;
 
   hasData = true;
   isEditing = false;
@@ -24,10 +25,11 @@ export class RelationshipQuestionComponent implements OnInit {
     this.edited = new EventEmitter();
     this.error = new EventEmitter();
     this.answerSelection = new EventEmitter();
+    this.answerFocus = new EventEmitter();
   }
 
   ngOnInit() {
-    if (!this.data) {
+    if (!this.data._id) {
       this.hasData = false;
       this.isEditing = true;
       this.data = { _id: '', question: '', options: [] };
@@ -40,9 +42,7 @@ export class RelationshipQuestionComponent implements OnInit {
       this.error.emit('please put valid values');
       return;
     }
-    console.log('id : ', this.data._id);
     this.edited.emit(this.data);
-    this.isEditing = false;
   }
 
   saveQuestion() {
@@ -56,11 +56,14 @@ export class RelationshipQuestionComponent implements OnInit {
       return;
     }
     this.created.emit(this.data);
-    this.isEditing = false;
   }
 
   selectAnswer() {
     this.answerSelection.emit(this.data);
+  }
+
+  focusAnswer() {
+    this.answerFocus.emit((this.data.answer as Option)._id);
   }
 
 }

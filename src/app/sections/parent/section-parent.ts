@@ -24,29 +24,35 @@ export default class SectionParent implements OnInit {
   constructor(protected flowStore: SectionCreationService, protected route: ActivatedRoute,
     protected max_questions: number, protected max_sharedOptions: number) {
     this.cid = route.snapshot.queryParams.cid;
-    this.sid = flowStore.getSID();
-    this.questions = Array(this.max_questions);
-    this.sharedOptions = Array(this.max_sharedOptions);
+    this.sid = flowStore.getSID() || route.snapshot.queryParams.sid;
   }
 
 
   ngOnInit() {
     if (this.sid) {
-      this.$data = this.flowStore.getCurrentSection()
-        .pipe(
-          tap((section: Section) => {
-            console.log('response : ', section);
-            this.submited_questions = section.questions.length;
-            this.submited_shared_options = section.sharedOptions.length;
-            this.questions = (section.questions as Question[]).concat(Array(this.max_questions - section.questions.length));
-            this.sharedOptions = (section.sharedOptions as Option[]).concat(Array(this.max_sharedOptions - section.sharedOptions.length));
-          }),
-          catchError((err: HandledResponse) => {
-            this.error = err;
-            return of();
-          })
-        );
+      this.fetchData();
+    } else {
+      this.questions = Array(this.max_questions).fill({});
+      this.sharedOptions = Array(this.max_sharedOptions).fill({});
     }
+  }
+
+  fetchData() {
+    this.$data = this.flowStore.getCurrentSection()
+      .pipe(
+        tap((section: Section) => {
+          this.submited_questions = section.questions.length;
+          this.submited_shared_options = section.sharedOptions.length;
+          this.questions = (section.questions as Question[]).
+            concat(Array(this.max_questions - section.questions.length).fill({}));
+          this.sharedOptions = (section.sharedOptions as Option[])
+            .concat(Array(this.max_sharedOptions - section.sharedOptions.length).fill({}));
+        }),
+        catchError((err: HandledResponse) => {
+          this.error = err;
+          return of();
+        })
+      );
   }
 
 
@@ -72,9 +78,9 @@ export default class SectionParent implements OnInit {
   }
 
   updateOptionIndex(index: number, data: Option) {
-    console.log('option : ', data);
-    console.log('index : ', index);
-    this.sharedOptions[index] = data;
+    this.sharedOptions[index]._id = data._id;
+    this.sharedOptions[index].text = data.text;
+    this.sharedOptions[index].image = data.image;
   }
 
   handleQuestionCreation(request: Question) {
@@ -86,6 +92,9 @@ export default class SectionParent implements OnInit {
   }
 
   updateQuestionIndex(index: number, data: Question) {
-    this.questions[index] = data;
+    this.questions[index]._id = data._id;
+    this.questions[index].question = data.question;
+    this.questions[index].options = data.options;
+    this.questions[index].answer = data.answer;
   }
 }

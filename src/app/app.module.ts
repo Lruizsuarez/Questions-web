@@ -51,6 +51,7 @@ import { ImageFocusComponent } from './shared/image-focus/image-focus.component'
 import { RelationshipQuestionComponent } from './shared/relationship-question/relationship-question.component';
 import { RelationshipOptionComponent } from './shared/relationship-option/relationship-option.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MultipleSelectionListComponent } from './shared/multiple-selection-list/multiple-selection-list.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ImageFocusComponent,
     RelationshipQuestionComponent,
     RelationshipOptionComponent,
+    MultipleSelectionListComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

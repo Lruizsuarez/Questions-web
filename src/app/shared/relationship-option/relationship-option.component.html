@@ -1,4 +1,5 @@
-<mat-card class="principal-container max-width-container bordered" fxLayout="column" fxLayoutAlign="start center">
+<mat-card class="principal-container max-width-container bordered" [ngClass]="focus? 'focused-container': ''"
+  fxLayout="column" fxLayoutAlign="start center">
   <button [disabled]="!showIndex" [ngClass]="showIndex? 'bordered-btn' : ''" (click)="optionSelected()"
     class="index-corner-button" mat-button matTooltip="{{showIndex? 'save answer' : ''}}">
     <img class="index-icon" src="{{'./../../../assets/img/number-' + (index+1) + '.png'}}" />
@@ -7,15 +8,15 @@
     <input #optionText matInput placeholder="option text ..." value="{{hasData?  data.text : ''}}" autocomplete="off"
       (input)="data.text = optionText.value" [disabled]="!isEditing">
   </mat-form-field>
-  <button *ngIf="data.image" mat-button class="btn-active" (click)="focusImage()">
+  <button *ngIf="data.image && imageChooser" mat-button class="btn-active" (click)="focusImage()">
     🤓 VIEW IMAGE
   </button>
-  <app-file-upload *ngIf="!data.image" [text]="'ADD AN IMAGE'"
+  <app-file-upload *ngIf="!data.image && imageChooser" [text]="'ADD AN IMAGE'"
     [icon]="'https://img.icons8.com/cotton/64/000000/upload.png'" [type]="'image/**'"
     (fileTransformed)="saveImage($event)">
   </app-file-upload>
   <button *ngIf="hasData && !creationFlow && !isEditing" (click)="isEditing = !isEditing" class="side-corner-button"
-    mat-raised-button matTooltip="edit option">
+    [ngClass]="focus? 'focused-btn' : ''" mat-raised-button matTooltip="edit option">
     <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
   </button>
   <button *ngIf="!hasData || creationFlow || isEditing" (click)="isEditing && !hasData? saveOption() : editOption()"

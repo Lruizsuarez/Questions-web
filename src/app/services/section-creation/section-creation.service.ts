@@ -59,17 +59,7 @@ export class SectionCreationService {
   }
 
   addQuestion(question: Question): Observable<HandledResponse> {
-    let resultId = '';
-    return this.questions.postQuestion(question, this.currentId).pipe(
-      map((response: HandledResponse) => {
-        resultId = response.additional_information.result_id;
-        return this.section.patchQuestion(this.currentId, resultId);
-      }),
-      flatMap((value: Observable<HandledResponse>) => value.pipe(map((response: HandledResponse) => {
-        response.additional_information.result_id = resultId;
-        return response;
-      }))
-      ));
+    return this.questions.postQuestion(question, this.currentId);
   }
 
   updateQuestion(question: Question): Observable<HandledResponse> {

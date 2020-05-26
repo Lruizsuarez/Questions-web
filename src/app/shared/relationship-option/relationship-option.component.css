@@ -48,7 +48,20 @@
 
 .btn-active {
   width: 200px;
-  border: 1px solid rgb(124, 211, 124);
+  border: 1px solid rgb(213, 233, 213);
+}
+
+.focused-container {
+  background-color: rgb(114, 207, 126);
+  border: 1px solid black;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple .focused-container {
+  background-color: white;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label .focused-container {
+  color: white;
 }
 
 

@@ -1,0 +1,36 @@
+.container {
+  height: 90%;
+  overflow-y: auto;
+}
+
+
+.question-card {
+  height: 70%;
+  width: 80%;
+  border: 1px solid rgba(28, 120, 196);
+  margin: 2% auto;
+}
+
+.question-input {
+  width: 80%;
+  margin-bottom: 2%;
+}
+
+
+.options {
+  width: 80%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.option-input {
+  width: 60%;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(28, 120, 196);
+}
