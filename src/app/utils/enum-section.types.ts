@@ -11,9 +11,6 @@ export interface SectionInfo {
   type: number;
   title: string;
   description: string;
-  questions: number;
-  has_shared_options: boolean;
-  shared_options?: number;
   style: string;
   route: string;
 }
@@ -26,9 +23,6 @@ export function getSectionInfo(value: string | SectionType): SectionInfo {
         type: 1,
         title: 'Matching',
         description: '<b> Match five sentences </b> to eight real-world notices.',
-        questions: 5,
-        has_shared_options: true,
-        shared_options: 8,
         style: 'type-1',
         route: '/section/image-relationship'
       };
@@ -37,8 +31,6 @@ export function getSectionInfo(value: string | SectionType): SectionInfo {
         type: 2,
         title: '3-option multiple choice',
         description: '<b> Read and Identify </b> appropiate vocabulary.',
-        questions: 5,
-        has_shared_options: false,
         style: 'type-2',
         route: '/section/vocabulary-identification'
       };
@@ -47,9 +39,6 @@ export function getSectionInfo(value: string | SectionType): SectionInfo {
         type: 3,
         title: 'match conversation',
         description: '<b> Choose appropiate responses </b> in verbal exchanges and continuous dialogue.',
-        questions: 5,
-        has_shared_options: true,
-        shared_options: 8,
         style: 'type-3',
         route: '/section/conversation-relationship'
       };
@@ -58,8 +47,6 @@ export function getSectionInfo(value: string | SectionType): SectionInfo {
         type: 4,
         title: '3-option main idea(s)',
         description: '<b> Read the text </b> for detailed understanding and main idea(s).',
-        questions: 7,
-        has_shared_options: false,
         style: 'type-4',
         route: '/section/reading-comprehension'
       };
@@ -68,8 +55,6 @@ export function getSectionInfo(value: string | SectionType): SectionInfo {
         type: 5,
         title: 'classic multiple selection',
         description: 'answer the questions with 4 multiple options',
-        questions: 5,
-        has_shared_options: false,
         style: 'type-5',
         route: '/section/multiple-selection'
       };

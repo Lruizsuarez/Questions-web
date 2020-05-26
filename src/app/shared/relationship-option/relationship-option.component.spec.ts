@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SectionContextComponent } from './section-context.component';
+import { RelationshipOptionComponent } from './relationship-option.component';
 
-describe('SectionContextComponent', () => {
-  let component: SectionContextComponent;
-  let fixture: ComponentFixture<SectionContextComponent>;
+describe('RelationshipOptionComponent', () => {
+  let component: RelationshipOptionComponent;
+  let fixture: ComponentFixture<RelationshipOptionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SectionContextComponent ]
+      declarations: [ RelationshipOptionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SectionContextComponent);
+    fixture = TestBed.createComponent(RelationshipOptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

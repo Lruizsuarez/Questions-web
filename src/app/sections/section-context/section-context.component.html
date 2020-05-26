@@ -1,12 +1,14 @@
 <mat-card class="principal-container max-width-container">
   <mat-card-header>
-    <button class="corner-button" mat-raised-button matTooltip="delete section">
+    <button *ngIf="sectionId" (click)="delete()" class="corner-button" mat-raised-button matTooltip="delete section">
       <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" />
     </button>
-    <button *ngIf="!isEditing" class="side-corner-button" mat-raised-button matTooltip="edit section">
+    <button *ngIf="!isEditing" (click)="setEditing()" class="side-corner-button" mat-raised-button
+      matTooltip="edit section">
       <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
     </button>
-    <button *ngIf="isEditing" class="side-corner-button" mat-raised-button matTooltip="save section">
+    <button *ngIf="isEditing" (click)="saveSection()" [ngClass]="sectionId? 'side-corner-button' :  'corner-button'"
+      mat-raised-button matTooltip="save section">
       <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
     </button>
   </mat-card-header>
@@ -30,11 +32,23 @@
     </mat-form-field>
   </form>
   <div class="image-container" fxLayout="row" fxLayoutAlign="flex-end">
-    <img *ngIf="image; else uploadButton" class="context-image" src="{{image.content}}" (click)="focusImage()">
+    <div *ngIf="image; else uploadButton" xLayout="column" fxLayoutAlign="center center">
+      <button mat-button class=" btn btn-active" (click)="focusImage()">
+        🤓 VIEW IMAGE
+      </button>
+    </div>
     <ng-template #uploadButton>
       <app-file-upload [text]="'UPLOAD'" [icon]="'https://img.icons8.com/cotton/64/000000/upload.png'"
         [type]="'image/**'" (fileTransformed)="saveImage($event)">
       </app-file-upload>
     </ng-template>
+  </div>
+  <div class="btn-container" fxLayout="row" fxLayoutAlign="flex-end">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <button mat-button class="btn" (click)="navigateToExample()" [ngClass]="example? 'btn-active': ''">
+        {{example? '🙉 VIEW EXAMPLE': '❓ CREATE AN EXAMPLE'}}
+      </button>
+    </div>
+
   </div>
 </mat-card>

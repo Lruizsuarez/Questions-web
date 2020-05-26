@@ -4,7 +4,6 @@ import { STORAGE_SERVICE, SessionStorageService } from './services/storage/sessi
 import { AuthInterceptor } from './helpers/AuthInterceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -49,9 +48,34 @@ import { MultipleSelectionComponent } from './sections/multiple-selection/multip
 import { SectionContextComponent } from './sections/section-context/section-context.component';
 import { FileUploadComponent } from './shared/file-upload/file-upload.component';
 import { ImageFocusComponent } from './shared/image-focus/image-focus.component';
+import { RelationshipQuestionComponent } from './shared/relationship-question/relationship-question.component';
+import { RelationshipOptionComponent } from './shared/relationship-option/relationship-option.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MultipleSelectionListComponent } from './shared/multiple-selection-list/multiple-selection-list.component';
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    FontAwesomeModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatInputModule,
+    MatDividerModule,
+    MatIconModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatChipsModule,
+    DragDropModule
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -81,26 +105,9 @@ import { ImageFocusComponent } from './shared/image-focus/image-focus.component'
     SectionContextComponent,
     FileUploadComponent,
     ImageFocusComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    FlexLayoutModule,
-    FontAwesomeModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatInputModule,
-    MatDividerModule,
-    MatIconModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatTooltipModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatChipsModule
+    RelationshipQuestionComponent,
+    RelationshipOptionComponent,
+    MultipleSelectionListComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

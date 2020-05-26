@@ -1,0 +1,22 @@
+<mat-card class="principal-container max-width-container bordered" fxLayout="column" fxLayoutAlign="start center">
+  <mat-form-field class="input-value">
+    <input #questionText matInput placeholder="question text ..." value="{{hasData?  data.question : ''}}"
+      autocomplete="off" (input)="data.question = questionText.value" [disabled]="!isEditing">
+  </mat-form-field>
+  <button *ngIf="hasData && !creationFlow && !isEditing" (click)="isEditing = !isEditing" class="side-corner-button"
+    mat-raised-button matTooltip="edit question">
+    <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
+  </button>
+  <button *ngIf="!hasData || creationFlow || isEditing" class="side-corner-button" mat-raised-button
+    matTooltip="save question" (click)="isEditing && !hasData? saveQuestion() : editQuestion()">
+    <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
+  </button>
+  <div class="buttons-container" fxLayout="row" fxLayoutAlign="space-around">
+    <button mat-raised-button mat-raised-button (click)="selectAnswer()">
+      {{ data.answer? '❓ CHANGE ANSWER' : '✅ ADD ANSWER'}}
+    </button>
+    <button *ngIf="data.answer" mat-raised-button mat-raised-button (click)="focusAnswer()">
+      ⚡VIEW ANSWER
+    </button>
+  </div>
+</mat-card>

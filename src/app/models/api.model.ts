@@ -61,7 +61,7 @@ export interface Section {
   title: string;
   type: number;
   context: string;
-  image?: string;
+  image?: Photo;
   example?: Question | string;
   questions: Question[] | string;
   sharedOptions?: Option[] | string;
@@ -81,8 +81,8 @@ export interface Option {
   _id: string;
   section?: Section | string;
   question?: Question | string;
-  image?: string;
-  text: string;
+  image?: Photo;
+  text?: string;
   answer?: boolean;
 }
 

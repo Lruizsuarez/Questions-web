@@ -1,4 +1,4 @@
-<div class="principal-container upload-container" fxLayout="column" fxLayoutAlign="center center">
+<div class="principal-container" fxLayout="column" fxLayoutAlign="center center">
   <input #upload hidden="true" type="file" accept="image/*" (change)="performUpload($event)" />
   <button class="upload-button" mat-button (click)="upload.click()">
     <img class="button-icon" src="{{icon}}">
