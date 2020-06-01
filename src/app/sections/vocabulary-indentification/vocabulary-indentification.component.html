@@ -29,7 +29,7 @@
         </div>
       </div>
       <app-multiple-selection-list class="questions-list" [data]="questions" [whiteFields]="true"
-        [options]="max_options">
+        [options]="max_options" (questionCreated)="createQuestion($event)" (questionUpdated)="updateQuestion($event)">
       </app-multiple-selection-list>
     </mat-card>
   </div>

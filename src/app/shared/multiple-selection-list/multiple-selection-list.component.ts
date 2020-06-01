@@ -26,12 +26,23 @@ export class MultipleSelectionListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('options  : ', this.options);
     this.optionsArray = Array(this.options);
   }
 
   validateData(question: Question) {
     return question._id;
+  }
+
+  trackByPosition(i: number) {
+    return i;
+  }
+
+  onCreationEmited(question: Question) {
+    this.questionCreated.emit(question);
+  }
+
+  onUpdateEmited(question: Question) {
+    this.questionUpdated.emit(question);
   }
 
 }

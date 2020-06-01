@@ -1,0 +1,54 @@
+.question-card {
+  height: 70%;
+  width: 80%;
+  border: 1px solid rgba(28, 120, 196);
+  margin: 2% auto;
+}
+
+.question-input {
+  width: 80%;
+  margin-bottom: 2%;
+}
+
+
+.options {
+  width: 80%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.option-container {
+  width: 100%;
+  position: relative;
+}
+
+.option-input {
+  width: 60%;
+}
+
+.side-corner-button {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+.sample-icon {
+  width: 24pt;
+  height: 24pt;
+}
+
+.option-icon {
+  margin: 2%;
+}
+
+.green-background {
+  background-color: rgb(145, 236, 165);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: rgb(28, 120, 196);
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: rgb(28, 120, 196);
+}
