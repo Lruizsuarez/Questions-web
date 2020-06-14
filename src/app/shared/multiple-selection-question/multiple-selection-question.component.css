@@ -32,6 +32,12 @@
   right: 2%;
 }
 
+.white-fields-button {
+  position: absolute;
+  top: 15%;
+  right: 2%;
+}
+
 .sample-icon {
   width: 24pt;
   height: 24pt;

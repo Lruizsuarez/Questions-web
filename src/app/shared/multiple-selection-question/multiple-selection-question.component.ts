@@ -27,7 +27,6 @@ export class MultipleSelectionQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('on init : ', this.data);
     if (this.data._id) {
       this.optionsArray = this.data.options as Option[];
     } else {
@@ -42,29 +41,40 @@ export class MultipleSelectionQuestionComponent implements OnInit {
   }
 
   validateData() {
-    return this.data._id;
+    return this.data._id !== undefined && !this.isEditing;
   }
 
   addOptionText($event: any, index: number) {
     const prev = this.optionsArray[index];
-    this.optionsArray.splice(index, 1, { text: $event.target.value, answer: prev.answer });
+    const mutatedObject = { _id: prev._id, text: $event.target.value, answer: prev.answer, updated: undefined };
+
+    if (this.data._id) {
+      mutatedObject.updated = true;
+    }
+    this.optionsArray.splice(index, 1, mutatedObject);
   }
 
   setAnswer(index: number) {
     const prev = this.optionsArray[index];
-    this.optionsArray.splice(index, 1, { text: prev.text, answer: !prev.answer });
+    const mutatedObject = { _id: prev._id, text: prev.text, answer: !prev.answer, updated: undefined };
+
+    if (this.data._id) {
+      mutatedObject.updated = true;
+    }
+
+    this.optionsArray.splice(index, 1, mutatedObject);
   }
 
   emitSave() {
     this.data.options = this.optionsArray;
-    console.log('data save : ', this.data);
     this.created.emit(this.data);
+    this.editionButtons = false;
   }
 
   emitUpdate() {
     this.data.options = this.optionsArray;
-    console.log('data update : ', this.data);
     this.updated.emit(this.data);
+    this.editionButtons = false;
   }
 
 }

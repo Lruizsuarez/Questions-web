@@ -25,4 +25,8 @@
     mat-raised-button matTooltip="save">
     <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
   </button>
+  <button *ngIf="whiteFields" (click)="questionPrompt.value = questionPrompt.value + ' [ ........... ]' "
+    class="white-fields-button" mat-raised-button matTooltip="add blank space">
+    <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/text.png" />
+  </button>
 </mat-card>

@@ -2,6 +2,9 @@ import { SectionCreationService } from './../../services/section-creation/sectio
 import { Component, OnInit } from '@angular/core';
 import SectionParent from '../parent/section-parent';
 import { ActivatedRoute } from '@angular/router';
+import { HandledResponse, Question } from 'src/app/models/api.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SIMPLE_ACTION_TEXT } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-reading-comprehension',
@@ -11,13 +14,42 @@ import { ActivatedRoute } from '@angular/router';
 export class ReadingComprehensionComponent extends SectionParent implements OnInit {
 
   SECTION_TYPE = 4;
+  max_options = 3;
 
-  constructor(protected flow: SectionCreationService, protected activatedRoute: ActivatedRoute) {
-    super(flow, activatedRoute, 7, 0);
+  constructor(protected flow: SectionCreationService, protected activatedRoute: ActivatedRoute, private snackBar: MatSnackBar) {
+    super(flow, activatedRoute, 5, 0);
   }
 
   ngOnInit() {
     super.ngOnInit();
+  }
+
+  createQuestion(request: Question) {
+    this.handleQuestionCreation(request).subscribe((response: HandledResponse) => {
+      request._id = response.additional_information.result_id;
+      this.submited_questions += 1;
+      this.showSuccessfullSnackBar(response.status);
+      this.fetchData();
+    }, (err: HandledResponse) => {
+      this.showErrorSnackBar(err.status);
+    });
+  }
+
+  updateQuestion(request: Question) {
+    this.handleQuestionUpdate(request).subscribe((response: HandledResponse) => {
+      this.showSuccessfullSnackBar(response.status);
+      this.fetchData();
+    }, (err: HandledResponse) => {
+      this.showErrorSnackBar(err.status);
+    });
+  }
+
+  showSuccessfullSnackBar(text: string) {
+    this.snackBar.open(text, null, { duration: 3000, panelClass: ['successfull-snackbar'] });
+  }
+
+  showErrorSnackBar(text: string) {
+    this.snackBar.open(text, SIMPLE_ACTION_TEXT, { duration: 5000, panelClass: ['error-snackbar'] });
   }
 
 }
