@@ -52,6 +52,7 @@ import { RelationshipQuestionComponent } from './shared/relationship-question/re
 import { RelationshipOptionComponent } from './shared/relationship-option/relationship-option.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MultipleSelectionListComponent } from './shared/multiple-selection-list/multiple-selection-list.component';
+import { MultipleSelectionQuestionComponent } from './shared/multiple-selection-question/multiple-selection-question.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { MultipleSelectionListComponent } from './shared/multiple-selection-list
     RelationshipQuestionComponent,
     RelationshipOptionComponent,
     MultipleSelectionListComponent,
+    MultipleSelectionQuestionComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

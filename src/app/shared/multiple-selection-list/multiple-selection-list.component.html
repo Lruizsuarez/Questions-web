@@ -1,17 +1,7 @@
 <div class="container max-width-container" fxLayout="column" fxLayoutAlign="start center">
   <div class="principal-container max-width-container">
-    <mat-card class="question-card" *ngFor="let question of data; let i = index" fxLayout="column"
-      fxLayoutAlign="start center">
-      <mat-form-field class="question-input">
-        <input #questionPrompt matInput placeholder="question text ..." value="{{question.question || ''}}"
-          autocomplete="off" (input)="question.question = questionPrompt.value" [disabled]="validateData(question)">
-      </mat-form-field>
-      <div class="options" fxLayout="column" fxLayoutAlign="start">
-        <mat-form-field class="option-input" *ngFor="let item of optionsArray; let i = index">
-          <input matInput placeholder="option text ..." value="{{''}}" autocomplete="off">
-        </mat-form-field>
-      </div>
-    </mat-card>
+    <app-multiple-selection-question *ngFor="let question of data; let i = index; trackBy: trackByPosition"
+      [data]="question" [whiteFields]="whiteFields" [options]="options" (created)="onCreationEmited($event)"
+      (updated)="onUpdateEmited($event)"></app-multiple-selection-question>
   </div>
-
 </div>

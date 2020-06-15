@@ -4,7 +4,7 @@
     <div class="context-wrapper" *ngIf="$data | async as section ;else loading">
       <app-section-context class="context-container no-margin" [contextMaxLength]="500" [courseId]="cid"
         [sectionId]="sid" [sectionType]="SECTION_TYPE" [title]="section.title" [context]="section.context"
-        [image]="section.image" [example]="section.question" (clickedImage)="handleContextImageClick($event)"
+        [image]="section.image" [explanation]="true" (clickedImage)="handleContextImageClick($event)"
         (performedDeletion)="clearSID()">
       </app-section-context>
     </div>

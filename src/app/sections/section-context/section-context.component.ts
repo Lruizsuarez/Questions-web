@@ -19,7 +19,7 @@ export class SectionContextComponent implements OnInit {
   @Input() title: string;
   @Input() context: string;
   @Input() image: Photo;
-  @Input() example: Question;
+  @Input() explanation: boolean;
   @Input() contextMaxLength: number;
 
   @Output() clickedImage: EventEmitter<Photo>;
@@ -85,7 +85,7 @@ export class SectionContextComponent implements OnInit {
 
 
   navigateToExample() {
-    if (this.example) {
+    if (this.explanation) {
       // TODO : navigate with params to view example
     } else {
       // TODO : navigate without params for create example

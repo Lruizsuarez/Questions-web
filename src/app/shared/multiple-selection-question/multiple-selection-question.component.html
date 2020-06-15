@@ -1,0 +1,32 @@
+<mat-card class="question-card" fxLayout="column" fxLayoutAlign="start center">
+  <mat-form-field class="question-input">
+    <input #questionPrompt matInput placeholder="question text ..." value="{{data.question || ''}}" autocomplete="off"
+      (input)="data.question = questionPrompt.value" [disabled]="validateData()">
+  </mat-form-field>
+  <div class="options" fxLayout="column" fxLayoutAlign="start">
+    <div class="option-container" *ngFor="let item of optionsArray; let i = index ;trackBy: trackByPosition"
+      [ngClass]="item.answer? 'green-background': ''" fxLayout="row" fxLayoutAlign="space-around">
+      <mat-form-field class="option-input">
+        <input matInput placeholder="option text ..." value="{{item.text ||  ''}}" autocomplete="off"
+          (input)="addOptionText($event , i)" [disabled]="validateData()">
+      </mat-form-field>
+      <button *ngIf="editionButtons" (click)="setAnswer(i)" class="option-icon" mat-raised-button
+        matTooltip="{{item.answer? 'unmark as answer': 'mark as answer' }} ">
+        <img class="sample-icon"
+          src="{{item.answer? 'https://img.icons8.com/dusk/64/000000/test-partial-passed.png': 'https://img.icons8.com/dusk/64/000000/checked-checkbox.png'}}" />
+      </button>
+    </div>
+  </div>
+  <button *ngIf="!isEditing" (click)="isEditing = !isEditing; editionButtons =!editionButtons"
+    class="side-corner-button" mat-raised-button matTooltip="edit">
+    <img class="sample-icon" src="https://img.icons8.com/cute-clipart/64/000000/edit.png" />
+  </button>
+  <button *ngIf="isEditing ||  !data._id" (click)="data._id ? emitUpdate():emitSave()" class="side-corner-button"
+    mat-raised-button matTooltip="save">
+    <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
+  </button>
+  <button *ngIf="whiteFields" (click)="questionPrompt.value = questionPrompt.value + ' [ ........... ]' "
+    class="white-fields-button" mat-raised-button matTooltip="add blank space">
+    <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/text.png" />
+  </button>
+</mat-card>
