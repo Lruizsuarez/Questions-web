@@ -53,6 +53,10 @@ import { RelationshipOptionComponent } from './shared/relationship-option/relati
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MultipleSelectionListComponent } from './shared/multiple-selection-list/multiple-selection-list.component';
 import { MultipleSelectionQuestionComponent } from './shared/multiple-selection-question/multiple-selection-question.component';
+import { SectionsListComponent } from './sections/sections-list/sections-list.component';
+import { ExamsListComponent } from './exams/exams-list/exams-list.component';
+import { ExamCreationComponent } from './exams/exam-creation/exam-creation.component';
+
 
 
 @NgModule({
@@ -110,6 +114,9 @@ import { MultipleSelectionQuestionComponent } from './shared/multiple-selection-
     RelationshipOptionComponent,
     MultipleSelectionListComponent,
     MultipleSelectionQuestionComponent,
+    SectionsListComponent,
+    ExamsListComponent,
+    ExamCreationComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

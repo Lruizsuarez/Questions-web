@@ -6,7 +6,6 @@ export enum SectionType {
   classic_multiple_selection = 5
 }
 
-
 export interface SectionInfo {
   type: number;
   title: string;

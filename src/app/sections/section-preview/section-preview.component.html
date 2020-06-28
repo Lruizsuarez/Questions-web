@@ -6,7 +6,7 @@
   <div class="cards-container">
     <mat-card class="card-children" *ngFor="let item of typesInfo"
       [ngClass]="[item.style , item.type === 5? 'centered-card' : '']" [routerLink]="item.route"
-      queryParamsHandling="merge">
+      [queryParams]="{new : true}" queryParamsHandling="merge">
       <mat-card-title> {{item.title}}</mat-card-title>
       <mat-card-subtitle [innerHTML]="item.description" [ngClass]="item.style"></mat-card-subtitle>
     </mat-card>

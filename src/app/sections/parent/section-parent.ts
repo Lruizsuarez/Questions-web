@@ -24,7 +24,17 @@ export default class SectionParent implements OnInit {
   constructor(protected flowStore: SectionCreationService, protected route: ActivatedRoute,
     protected max_questions: number, protected max_sharedOptions: number) {
     this.cid = route.snapshot.queryParams.cid;
-    this.sid = flowStore.getSID() || route.snapshot.queryParams.sid;
+    this.sid = flowStore.getSID();
+    const querySid = route.snapshot.queryParams.sid;
+    const newFlow = route.snapshot.queryParams.new;
+    if (querySid && this.sid !== querySid) {
+      this.flowStore.saveSID(querySid);
+      this.sid = querySid;
+    }
+    if (newFlow) {
+      this.clearSID();
+      this.sid = undefined;
+    }
   }
 
 

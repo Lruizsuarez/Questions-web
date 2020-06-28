@@ -8,6 +8,8 @@
             <mat-icon id="search-icon" matPrefix>search</mat-icon>
             <input matInput type="text" placeholder="Search" (change)="search($event)" autocomplete="off">
           </mat-form-field>
+          <button *ngIf="!error" [routerLink]="'/topics/course-creation'" mat-button class="create-btn"> CREATE COURSE
+            ➕</button>
         </div>
         <div>
           <div *ngIf="!isSearching">
@@ -33,7 +35,6 @@
           </div>
         </div>
       </div>
-
     </div>
     <ng-template #loadingOrError>
       <div class="container" *ngIf="error != null; else loading">
