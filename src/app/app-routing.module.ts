@@ -1,3 +1,6 @@
+import { ExamCreationComponent } from './exams/exam-creation/exam-creation.component';
+import { ExamsListComponent } from './exams/exams-list/exams-list.component';
+import { SectionsListComponent } from './sections/sections-list/sections-list.component';
 import { MultipleSelectionComponent } from './sections/multiple-selection/multiple-selection.component';
 import { ReadingComprehensionComponent } from './sections/reading-comprehension/reading-comprehension.component';
 import { ConversationRelationshipComponent } from './sections/conversation-relationship/conversation-relationship.component';
@@ -35,6 +38,10 @@ const routes: Routes = [
     path: 'section',
     children: [
       {
+        path: 'list',
+        component: SectionsListComponent,
+      },
+      {
         path: 'preview',
         component: SectionPreviewComponent,
       },
@@ -57,6 +64,17 @@ const routes: Routes = [
       {
         path: 'multiple-selection',
         component: MultipleSelectionComponent,
+      }
+    ]
+  }, {
+    path: 'exam',
+    children: [
+      {
+        path: 'list',
+        component: ExamsListComponent
+      }, {
+        path: 'creation',
+        component: ExamCreationComponent
       }
     ]
   }, {

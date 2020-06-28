@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -14,11 +14,16 @@ export class ShadowCardComponent implements OnInit {
   @Input() count: number;
   @Input() countToolTip: string;
   @Input() animated: boolean;
+  @Input() context: string;
   @Output() cardClick = new EventEmitter<void>();
+
+  private id: string;
 
   showTitle = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute) {
+    this.id = this.activeRoute.snapshot.params['id'];
+  }
 
   ngOnInit() {
   }
@@ -28,8 +33,12 @@ export class ShadowCardComponent implements OnInit {
     if (this.animated) {
       this.cardClick.emit();
     } else {
-      console.log('not animated card');
+      this.navigateContext();
     }
+  }
+
+  navigateContext() {
+    this.router.navigate([this.context], { queryParams: { cid: this.id } });
   }
 
 }

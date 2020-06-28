@@ -8,9 +8,9 @@ describe('ImageRelationshipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageRelationshipComponent ]
+      declarations: [ImageRelationshipComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
