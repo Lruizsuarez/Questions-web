@@ -47,13 +47,14 @@ export interface Activity {
 }
 
 export interface Exam {
+  _id?: string;
   course: Course | string;
   title: string;
   minimum_approve_questions: number;
   total_questions: number;
   sections: Section[] | string;
-  create_date: Date;
-  last_update_date: Date;
+  create_date?: Date;
+  last_update_date?: Date;
 }
 
 export interface Section {

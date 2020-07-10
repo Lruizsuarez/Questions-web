@@ -1,3 +1,61 @@
-<p>
-  exams-list works!
-</p>
+<div class="principal-container max-width-container" fxLayout="column" fxLayoutAlign="center center">
+  <div class="card-container" fxLayout="column" fxLayoutAlign="start center">
+    <div class="courses-title">
+      <div class="title-content">
+        <h2>EXAMS</h2>
+        <mat-form-field class="search-input">
+          <mat-icon id="search-icon" matPrefix>search</mat-icon>
+          <input #examSearch matInput type="text" placeholder="Search" autocomplete="off" (change)="search($event)">
+          <button mat-button *ngIf="examSearch.value.length > 0" matSuffix mat-icon-button aria-label="Clear"
+            (click)="examSearch.value = ''; searchKeyWord=''; isSearching= false">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="section-grid-list-container" *ngIf=" $exams | async as exams; else loadingOrError">
+      <div class="section-grid-list" *ngIf="!isSearching">
+        <div class="section-grid-item" *ngFor="let item of exams">
+          <div class="item-content" [routerLink]="['exam/creation']" [queryParams]="{eid : item._id , cid : cid }">
+            <h2>{{item.title}}</h2>
+            <p>this exam has {{item.sections.length}} sections</p>
+            <div class="date">
+              <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/approve-and-update.png"
+                matTooltip="last update date" />
+              <p> {{getFormattedDate(item.last_update_date)}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-grid-item new-item" [routerLink]="'/section/preview'" queryParamsHandling="merge">
+          <div class="item-content new-content">
+            <h3> CREATE NEW SECTION ⚡ </h3>
+          </div>
+        </div>
+      </div>
+      <div class="section-grid-list" *ngIf="isSearching">
+        <div class="section-grid-item" *ngFor="let item of searchList">
+          <div class="item-content" [routerLink]="['exam/creation']" [queryParams]="{eid : item._id , cid : cid }">
+            <h2 [innerHTML]="item.title | highlight:searchKeyWord"></h2>
+            <p>this exam has {{item.sections.length}} sections</p>
+            <div class="date">
+              <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/approve-and-update.png"
+                matTooltip="last update date" />
+              <p> {{getFormattedDate(item.last_update_date)}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-grid-item new-item" [routerLink]="'/section/preview'" queryParamsHandling="merge">
+          <div class="item-content new-content">
+            <h3> CREATE NEW SECTION ⚡ </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadingOrError>
+    <h1 *ngIf="error else loading"> Oops , somehting went wrong</h1>
+    <ng-template #loading>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+  </ng-template>
+</div>
