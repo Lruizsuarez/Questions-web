@@ -1,3 +1,83 @@
-<p>
-  exam-creation works!
-</p>
+<div class="principal-container max-width-container" fxLayout="column" fxLayoutAlign="center center">
+  <div class="card-container" fxLayout="column" fxLayoutAlign="start center"
+    *ngIf="$sections | async else loadingOrError">
+    <button (click)="handle()" class="side-corner-button" mat-raised-button matTooltip="save exam"
+      [matTooltipPosition]="['before']">
+      <img class="sample-icon" src="https://img.icons8.com/dusk/64/000000/save-all.png" />
+    </button>
+    <div class="exam-title-input">
+      <div class="content">
+        <h2>{{(eid? 'VIEW' : 'CREATE')  + ' AN EXAM'}}</h2>
+        <mat-form-field class="title-input">
+          <input #examInput matInput type="text" placeholder="Exam title" autocomplete="off"
+            (change)="title = $event.target.value" value="{{title}}">
+          <button mat-button *ngIf="examInput.value.length > 0" matSuffix mat-icon-button aria-label="Clear"
+            (click)="examInput.value = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="simple-input">
+          <input #minquestions matInput type="number" placeholder="minimum approve questions" autocomplete="off"
+            (change)="approveQuestions = $event.target.value" value="{{approveQuestions}}">
+          <button mat-button *ngIf="minquestions.value.length > 0" matSuffix mat-icon-button aria-label="Clear"
+            (click)="maxquestions.value = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="drag-sections" fxLayout="row" fxLayoutAlign="center center">
+      <div class="half-container" [ngClass]="[examContent.length > 0 ? '': 'bordered-half']" fxLayout="column"
+        fxLayoutAlign="start start">
+        <div cdkDropList #examContentList="cdkDropList" [cdkDropListData]="examContent"
+          [cdkDropListConnectedTo]="[wholeSectionList]" class="content-list" (cdkDropListDropped)="drop($event)">
+          <h2 *ngIf="examContent.length > 0"> Content of {{examInput.value}}</h2>
+          <div class="principal-container max-width-container" fxLayout="column" fxLayoutAlign="center center"
+            *ngIf="examContent.length == 0">
+            <h4 class="empty-list-title">Put the exam sections here 🌞</h4>
+          </div>
+          <div class="section-grid-item" *ngFor="let item of examContent" cdkDrag>
+            <div class="item-content">
+              <h2>{{item.title}}</h2>
+              <p>this section has {{item.questions_count}} questions</p>
+              <div class="date">
+                <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/approve-and-update.png"
+                  matTooltip="last update date" />
+                <p> {{getFormattedDate(item.last_update_date)}}</p>
+              </div>
+              <div class="simple-chip" ngClass="{{'type-' + item.type}}">
+                <p>{{getSectionTitle(item.type)}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="half-container" fxLayout="column" fxLayoutAlign="start center">
+        <div cdkDropList #wholeSectionList="cdkDropList" [cdkDropListData]="wholeSections"
+          [cdkDropListConnectedTo]="[examContentList]" class="content-list" (cdkDropListDropped)="drop($event)">
+          <h2>Sections</h2>
+          <div class="section-grid-item" *ngFor="let item of wholeSections" cdkDrag>
+            <div class="item-content">
+              <h2>{{item.title}}</h2>
+              <p>this section has {{item.questions_count}} questions</p>
+              <div class="date">
+                <img class="sample-icon" src="https://img.icons8.com/plasticine/100/000000/approve-and-update.png"
+                  matTooltip="last update date" />
+                <p> {{getFormattedDate(item.last_update_date)}}</p>
+              </div>
+              <div class="simple-chip" ngClass="{{'type-' + item.type}}">
+                <p>{{getSectionTitle(item.type)}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadingOrError>
+    <h1 *ngIf="error else loading"> Oops , something went wrong</h1>
+    <ng-template #loading>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+  </ng-template>
+</div>
