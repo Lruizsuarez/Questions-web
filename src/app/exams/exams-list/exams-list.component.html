@@ -16,7 +16,8 @@
     <div class="section-grid-list-container" *ngIf=" $exams | async as exams; else loadingOrError">
       <div class="section-grid-list" *ngIf="!isSearching">
         <div class="section-grid-item" *ngFor="let item of exams">
-          <div class="item-content" [routerLink]="['exam/creation']" [queryParams]="{eid : item._id , cid : cid }">
+          <div class="item-content" [routerLink]="['/exam/creation']" [queryParams]="{eid : item._id}"
+            queryParamsHandling="merge">
             <h2>{{item.title}}</h2>
             <p>this exam has {{item.sections.length}} sections</p>
             <div class="date">
@@ -26,15 +27,16 @@
             </div>
           </div>
         </div>
-        <div class="section-grid-item new-item" [routerLink]="'/section/preview'" queryParamsHandling="merge">
+        <div class="section-grid-item new-item" [routerLink]="'/exam/creation'" queryParamsHandling="merge">
           <div class="item-content new-content">
-            <h3> CREATE NEW SECTION ⚡ </h3>
+            <h3> CREATE NEW EXAM ⚡ </h3>
           </div>
         </div>
       </div>
       <div class="section-grid-list" *ngIf="isSearching">
         <div class="section-grid-item" *ngFor="let item of searchList">
-          <div class="item-content" [routerLink]="['exam/creation']" [queryParams]="{eid : item._id , cid : cid }">
+          <div class="item-content" [replaceUrl]="true" [routerLink]="['/exam/creation']"
+            [queryParams]="{eid : item._id , cid : cid }">
             <h2 [innerHTML]="item.title | highlight:searchKeyWord"></h2>
             <p>this exam has {{item.sections.length}} sections</p>
             <div class="date">
@@ -44,16 +46,16 @@
             </div>
           </div>
         </div>
-        <div class="section-grid-item new-item" [routerLink]="'/section/preview'" queryParamsHandling="merge">
+        <div class="section-grid-item new-item" [routerLink]="'/exam/creation'" queryParamsHandling="merge">
           <div class="item-content new-content">
-            <h3> CREATE NEW SECTION ⚡ </h3>
+            <h3> CREATE NEW EXAM ⚡ </h3>
           </div>
         </div>
       </div>
     </div>
   </div>
   <ng-template #loadingOrError>
-    <h1 *ngIf="error else loading"> Oops , somehting went wrong</h1>
+    <h1 *ngIf="error else loading"> Oops , something went wrong</h1>
     <ng-template #loading>
       <mat-spinner></mat-spinner>
     </ng-template>

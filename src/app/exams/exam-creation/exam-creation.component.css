@@ -1,0 +1,185 @@
+.card-container {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  color: black;
+  background-color: white;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
+
+.exam-title-input {
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: white;
+  width: 100%;
+  padding-top: 2%;
+}
+
+.title-input {
+  width: 60%;
+  margin: 2% 5% 2% 0;
+  color: black;
+}
+
+.simple-input {
+  width: 20%;
+  margin: 2% auto;
+  color: black;
+}
+
+.content {
+  margin: auto 2%;
+}
+
+.drag-sections {
+  margin: 2%;
+  height: 60%;
+  width: 100%;
+}
+
+.half-container {
+  height: 100%;
+  flex: 1;
+  margin: 2%;
+}
+
+.bordered-half {
+  border-radius: 4px;
+  border: 1px dashed gray;
+}
+
+.empty-list-title {
+  color: gray;
+}
+
+.half-container>h2 {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-ripple {
+  background-color: black;
+
+}
+
+:host ::ng-deep .search-input input {
+  caret-color: black;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  color: black;
+}
+
+.section-grid-item {
+  cursor: move;
+  height: min-content;
+  width: 90%;
+  margin: 2%;
+  transition: 0.4s;
+  border-radius: 4px;
+  border: 1px solid rgb(179, 179, 179);
+  background-color: white;
+  display: inline-block;
+}
+
+.content-list {
+  width: 80%;
+  overflow: auto;
+}
+
+.section-grid-item:hover {
+  transform: scale(0.9, 0.9);
+}
+
+
+.title-content {
+  margin: auto 2%;
+}
+
+.item-content {
+  padding: 2%;
+  position: relative;
+}
+
+.item-content>h2 {
+  margin-bottom: 2%;
+}
+
+.sample-icon {
+  width: 24pt;
+  height: 24pt;
+  margin-right: 1%;
+}
+
+.date {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.simple-chip {
+  position: absolute;
+  border-radius: 20px;
+  padding: 8px 16px;
+  top: 5%;
+  right: 2%;
+}
+
+.simple-chip>p {
+  font-size: 10pt;
+}
+
+.type-1 {
+  background-color: rgb(101, 72, 207);
+  color: white;
+}
+
+
+.type-2 {
+  background-color: rgb(230, 94, 94);
+  color: white;
+}
+
+.type-3 {
+  background-color: rgba(28, 120, 196, 1);
+  color: white;
+}
+
+.type-4 {
+  background-color: rgb(67, 192, 67);
+  color: white;
+}
+
+.type-5 {
+  background-color: rgb(215, 226, 52);
+  color: black;
+}
+
+.new-item {
+  border: 1px dashed gray;
+}
+
+.new-content {
+  text-align: center;
+  color: gray;
+}
+
+.side-corner-button {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 9999;
+}
+
+.sample-icon {
+  width: 36pt;
+  height: 36pt;
+}
