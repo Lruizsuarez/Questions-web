@@ -3,7 +3,7 @@
     <div class="header" fxLayout="row" fxLayoutAlign="center" *ngIf="user">
       <div id="avatar-image" fxFlex="20">
         <img class="header-image"
-          src="{{'data:' + user.photo.content_type + ';base64,' +  user.photo.content || 'https://www.w3schools.com/howto/img_avatar.png'}}">
+          src="{{ user.photo? 'data:' + user.photo?.content_type + ';base64,' +  user.photo?.content :  'https://www.w3schools.com/howto/img_avatar.png'}}">
       </div>
       <div class="information-area" fxLayout="column" fxLayoutAlign="center" fxFlex="80">
         <div class="title-area" fxLayout="row" fxFlex="30">
